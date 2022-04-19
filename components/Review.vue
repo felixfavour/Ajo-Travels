@@ -49,7 +49,5 @@
   flex-direction: column;
   color: #FFFF;
 }
-.name{
-  
-}
+
 </style>
