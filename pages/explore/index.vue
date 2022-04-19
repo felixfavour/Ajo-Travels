@@ -8,37 +8,55 @@
     </section>
     <section class="middle">
       <div class="scroll">
-        <TheScrollBar />
+        <div class="scroll-text" v-for="city in cities" :key="city.id">
+          <TheScrollBar :city="city" />
+        </div>
         <div class="line"></div>
       </div>
       <div class="search">
         <TheSearchBar />
       </div>
     </section>
-    <section class="bottom">
-      <div class="explore-cards"></div>
+    <section class="explore-container">
+      <div class="explore-cards">
+        <div class="explore">
+          <div class="explore-text">
+            <h1>The National Museum</h1>
+            <p>African modern art gallery</p>
+          </div>
+        </div>
+        <div class="explore">
+          <div class="explore-text">
+            <h1>The National Museum</h1>
+            <p>African modern art gallery</p>
+          </div>
+        </div>
+        <div class="explore">
+          <div class="explore-text">
+            <h1>The National Museum</h1>
+            <p>African modern art gallery</p>
+          </div>
+        </div>
+        <TheExploreCard />
+      </div>
     </section>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      cities: this.$store.state.cities,
+    };
+  },
+};
 </script>
 <style lang="scss" scoped>
 .container {
-  padding: 0rem 32px;
   max-width: 428px;
-  border: 0.5px solid #041a7a;
   margin: 1rem 3rem;
   font-family: "Brown";
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto;
-  grid-template-areas:
-    "top"
-    "mid"
-    "bottom";
   .top {
-    grid-area: top;
     .welcome {
       font-family: "Brown";
       margin-top: 34px;
@@ -50,11 +68,13 @@ export default {};
     }
   }
   .middle {
-    grid-area: mid;
     .scroll {
-      margin-top: 27px;
+      display: flex;
+      flex-direction: row;
+      overflow: scroll;
+      max-width: 428px;
       .line {
-        height: 1.5px;
+        height: 5.5px;
         background: #fffee6;
         max-width: 428px;
       }
@@ -63,8 +83,40 @@ export default {};
       margin-top: 12px;
     }
   }
-  .bottom {
-    grid-area: bottom;
+  .explore-container {
+    .explore-cards {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      margin-top: 1rem;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      max-height: 500px;
+      padding: 0rem 3rem;
+      .explore {
+        background-image: url(" ../../assets/img/nat-theather.jpeg");
+        background-position: 0% 45%;
+        width: 389px;
+        height: 160px;
+        border-radius: 32px;
+        padding: 1rem 0rem;
+        margin-top: 10px;
+        .explore-text {
+          color: #fff;
+          margin-top: 4.2rem;
+          padding: 0.5rem 1rem;
+          h1 {
+            font-size: 20px;
+            line-height: 22.79px;
+          }
+          p {
+            font-size: 14px;
+            line-height: 18.23px;
+          }
+        }
+      }
+    }
   }
 }
 </style>
