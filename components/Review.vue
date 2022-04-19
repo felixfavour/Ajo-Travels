@@ -49,5 +49,4 @@
   flex-direction: column;
   color: #FFFF;
 }
-
 </style>
