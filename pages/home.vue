@@ -69,11 +69,21 @@ export default {
   .middle {
     grid-area: mid;
     .scroll {
+      position: relative;
       margin-top: 40px;
       display: flex;
       flex-direction: row;
       overflow: scroll;
       max-width: 428px;
+      .scroll-text::after {
+        content: "";
+        position: absolute;
+        height: 3px;
+        left: 0;
+        bottom: 0;
+        width: 10%;
+        background: yellow;
+      }
       .line {
         height: 5.5px;
         background: #fffee6;

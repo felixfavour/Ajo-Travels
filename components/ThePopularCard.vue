@@ -50,6 +50,7 @@ export default {};
       border-radius: 32px;
       margin: 0rem 10px;
       height: 410px;
+      transition: transform 500ms ease;
       .card-text {
         display: flex;
         flex-direction: column;
@@ -68,6 +69,9 @@ export default {};
           font-weight: 300;
         }
       }
+    }
+    .card:hover {
+      transform: scale(1.02);
     }
   }
 }
