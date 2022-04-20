@@ -49,4 +49,8 @@
   flex-direction: column;
   color: #FFFF;
 }
+/* p{
+  font-size: 24px;
+  line-height: 36px;
+} */
 </style>

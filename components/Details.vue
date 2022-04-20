@@ -45,7 +45,6 @@
   column-gap: 8.3rem;
 }
 .images p{
-  margin-top: 1rem;
   font-size: 24px;
   line-height: 2.25rem;
   font-weight: 400;
@@ -54,16 +53,19 @@
   background-image: url(~assets/images/road-sign.svg);
   width: 143.59px;
   height: 138.46px;
+  margin-bottom: 16.2px;
 }
 .image-2{
   background-image: url(~assets/images/share.svg);
   width: 215.78px;
   height: 137.73px;
+  margin-bottom: 16.93px;
 }
 .image-3{
   background-image: url(~assets/images/updates.svg);
   width: 165.67px;
   height: 137.73px;
+  margin-bottom: 16.93px;
 }
 .text{
   position: absolute;
