@@ -42,43 +42,63 @@ main {
   .logo {
     margin-top: 105px;
     img {
-      top: 205px;
-      left: 123px;
+      position: relative;
+      top: 55px;
       width: 180px;
       height: 185px;
     }
   }
   .title {
-    font-family: "Brown";
-    letter-spacing: 4px;
+    font-family: "AirbnbCereal_W_Bd";
+    letter-spacing: 2px;
   }
   .text {
     display: flex;
     align-items: center;
     flex-direction: column;
     margin-top: 45px;
-    font-family: "Brown";
     text-align: center;
     margin-bottom: 94px;
     h1 {
+      position: relative;
       font-style: normal;
       font-weight: 700;
-      font-size: 25px;
+      font-size: 24px;
+      font-family: "AirbnbCereal_W_md";
       width: 305px;
-      height: 33px;
-      line-height: 33px;
     }
+    h1::after {
+      content: "";
+      position: absolute;
+      height: 4px;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background: #fcf300;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 250ms ease;
+    }
+
     p {
+      font-family: "AirbnbCereal_W_lt";
+      font-size: 14px;
       font-weight: 300;
       width: 343px;
-      font-size: 14px;
-      height: 24px;
+    }
+  }
+
+  .text:hover {
+    h1::after {
+      transform: scaleX(1);
     }
   }
   .button {
-    margin-bottom: 108px;
+    margin-bottom: 92px;
     a {
       text-decoration: none;
+      font-weight: 500;
+      font-family: "AirbnbCereal_W_lt";
     }
   }
 }
