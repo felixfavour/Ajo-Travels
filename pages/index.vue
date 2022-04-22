@@ -76,7 +76,7 @@ main {
       width: 100%;
       background: #fcf300;
       transform: scaleX(0);
-      transform-origin: right;
+      transform-origin: left;
       transition: transform 250ms ease;
     }
 

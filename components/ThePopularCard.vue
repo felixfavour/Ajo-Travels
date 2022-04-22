@@ -48,7 +48,7 @@ export default {};
       background-image: url("../assets/img/landmark.jpeg");
       background-position: center;
       border-radius: 32px;
-      margin: 0rem 10px;
+      margin: 1rem 10px;
       height: 410px;
       transition: transform 500ms ease;
       .card-text {
@@ -64,7 +64,7 @@ export default {};
           line-height: 31px;
         }
         p {
-          width: 286px;
+          width: 276px;
           font-size: 14px;
           font-weight: 300;
         }
