@@ -82,9 +82,14 @@ h2{
   font-size: 35px;
   line-height: 2.75rem;
   margin-bottom: 1.75rem;
+  font-family: 'Cereal Medium';
+  font-weight: 500;
 }
 p{
   font-size: 24px;
   line-height: 2.25rem;
+  font-family: 'Cereal Book';
+  font-weight: 400;
 }
+
 </style>

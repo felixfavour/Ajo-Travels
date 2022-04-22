@@ -48,6 +48,8 @@
   font-size: 24px;
   line-height: 2.25rem;
   font-weight: 400;
+  font-family: 'Cereal Book';
+  font-weight: 400;
 }
 .image-1{
   background-image: url(~assets/images/road-sign.svg);
@@ -76,6 +78,8 @@
   background-color: #FFF;
   font-size: 24px;
   line-height: 2.75rem;
+  font-family: 'Cereal Medium';
+  font-weight: 500;
 }
 .yellow{
   position: absolute;

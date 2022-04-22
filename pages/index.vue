@@ -8,11 +8,14 @@
   <Details/>
   <Cards/>
   <Review/>
+  <Footer/>
 </div>
 </template>
 
 <script>
+import Footer from '~/components/Footer.vue'
 export default {
+  components: { Footer },
   name: 'IndexPage',
 }
 </script>
