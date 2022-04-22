@@ -10,25 +10,6 @@
           </p>
         </div>
       </div>
-
-      <div class="card">
-        <div class="card-text">
-          <h1>Landmark Beach</h1>
-          <p>
-            Sport activities, relaxation, <br />
-            restaurants, cafe and more
-          </p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-text">
-          <h1>Landmark Beach</h1>
-          <p>
-            Sport activities, relaxation, <br />
-            restaurants, cafe and more
-          </p>
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -37,8 +18,6 @@ export default {};
 </script>
 <style lang="scss" scoped>
 .cards-container {
-  width: 428px;
-  overflow: scroll;
   .scroll {
     display: flex;
     flex-direction: row;

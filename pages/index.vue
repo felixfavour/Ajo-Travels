@@ -24,89 +24,95 @@
 import TheButton from "~/components/TheButton.vue";
 export default {
   name: "IndexPage",
+  transition: "start",
   components: { TheButton },
 };
 </script>
 <style lang="scss" scoped>
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 428px;
-  background-image: linear-gradient(to bottom, #041a7acc, #041a7acc 80%),
-    url("../assets/img/home-bg.png");
-  background-position: center;
-  background-size: 542px 926px;
-  background-repeat: no-repeat;
-  color: #fff;
-  .logo {
-    margin-top: 105px;
-    img {
-      position: relative;
-      top: 55px;
-      width: 180px;
-      height: 185px;
-    }
-  }
-  .title {
-    font-family: "AirbnbCereal_W_Bd";
-    letter-spacing: 2px;
-  }
-  .text {
+@media screen and (max-width: 428px) {
+  main {
     display: flex;
-    align-items: center;
     flex-direction: column;
-    margin-top: 45px;
-    text-align: center;
-    margin-bottom: 94px;
-    h1 {
-      position: relative;
-      font-style: normal;
-      font-weight: 700;
-      font-size: 24px;
-      font-family: "AirbnbCereal_W_md";
-      width: 305px;
+    align-items: center;
+    width: 428px;
+    height: 926px;
+    background-image: linear-gradient(to bottom, #041a7acc, #041a7acc 80%),
+      url("../assets/img/home-bg.png");
+    background-position: center;
+    background-size: 542px 926px;
+    background-repeat: no-repeat;
+    color: #fff;
+    .logo {
+      margin-top: 105px;
+      img {
+        position: relative;
+        top: 55px;
+        width: 180px;
+        height: 185px;
+      }
     }
-    h1::after {
-      content: "";
-      position: absolute;
-      height: 4px;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      background: #fcf300;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 250ms ease;
+    .title {
+      font-family: "AirbnbCereal_W_Bd";
+      letter-spacing: 2px;
+    }
+    .text {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 45px;
+      text-align: center;
+      margin-bottom: 94px;
+      h1 {
+        position: relative;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        font-family: "AirbnbCereal_W_md";
+        width: 305px;
+      }
+      h1::after {
+        content: "";
+        position: absolute;
+        height: 4px;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background: #fcf300;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 250ms ease;
+      }
+
+      p {
+        font-family: "AirbnbCereal_W_lt";
+        font-size: 14px;
+        font-weight: 300;
+        width: 343px;
+      }
     }
 
-    p {
-      font-family: "AirbnbCereal_W_lt";
-      font-size: 14px;
-      font-weight: 300;
-      width: 343px;
+    .text:hover {
+      h1::after {
+        transform: scaleX(1);
+      }
     }
-  }
-
-  .text:hover {
-    h1::after {
-      transform: scaleX(1);
-    }
-  }
-  .button {
-    margin-bottom: 92px;
-    a {
-      text-decoration: none;
-      font-weight: 500;
-      font-family: "AirbnbCereal_W_lt";
+    .button {
+      margin-bottom: 92px;
+      a {
+        text-decoration: none;
+        font-weight: 500;
+        font-family: "AirbnbCereal_W_lt";
+      }
     }
   }
 }
 
-@media screen and (max-width: 428px) {
-  main {
-    background-image: url("../assets/img/home-bg.png");
-    background: #000;
-  }
+.start-enter-active,
+.start-leave-active {
+  transition: opacity 0.5s;
+}
+.start-enter,
+.start-leave-active {
+  opacity: 0;
 }
 </style>
