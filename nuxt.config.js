@@ -11,7 +11,13 @@ export default {
       { hid: "description", name: "description", content: "" },
       { name: "format-detection", content: "telephone=no" },
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    link: [
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      {
+        rel: "stylesheet",
+        "href": "https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap",
+      }
+  ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -29,12 +35,20 @@ export default {
     // '@nuxtjs/eslint-module'
   ],
 
+  styleResources: {
+    scss: [
+        '~/assets/scss/mixins.scss',
+    ]
+},
+
+
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
     "@nuxtjs/axios",
     // https://go.nuxtjs.dev/pwa
     "@nuxtjs/pwa",
+    '@nuxtjs/style-resources',
     //Nuxt Fontawesome
     [
       "nuxt-fontawesome",

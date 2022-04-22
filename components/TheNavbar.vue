@@ -23,11 +23,11 @@ export default {};
 <style lang="scss" scoped>
 .nav {
   display: flex;
-  max-width: 428px;
+  // max-width: 428px;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-top: 46px;
+  padding: 45px 32px;
   svg {
     color: #9a9400;
   }

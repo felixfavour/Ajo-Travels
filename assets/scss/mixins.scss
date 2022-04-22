@@ -1,0 +1,19 @@
+*{
+    font-family: 'Noto Sans', sans-serif;
+}
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@mixin flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+// .img-container{
+//     width: 100vw;
+//     background-color: blue;
+// }
