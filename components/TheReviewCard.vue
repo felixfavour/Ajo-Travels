@@ -44,6 +44,7 @@ export default {
 <style lang="scss" scoped>
     .review-card{
         @include flex-center;
+        width: 267px;
         gap: 10.32px;
         align-items: flex-start;
         padding: 22px;

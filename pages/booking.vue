@@ -47,18 +47,78 @@
         <div class="review-card-container">
           <review-card />
         </div>
+    </div>
+    <div class="recommended-places-container">
+      <div class="section-header">
+        <h3>
+          More like this
+        </h3>
       </div>
+      <div class="recommended-places">
+        <place-card />
+      </div>
+    </div>
+    <div class="book-btns">
+      <button class="yellow-btn" @click="revealModal">
+        Book ride
+      </button>
+      <button class="transparent-btn">
+        Get Directions
+      </button>
+    </div>
+    <ride-modal v-if="showModal" @close-modal="onCloseModal" />
   </div>
 </template>
 <script>
 import TheNavbarVue from '~/components/TheNavbar.vue';
-import reviewCard from '~/components/TheReviewCard.vue'
+import reviewCard from '~/components/TheReviewCard.vue';
+import placeCard from '~/components/PlaceCard.vue';
+import rideModal from '~/components/RideModal.vue';
 
 export default {
   name: "booking",
   components:{
     TheNavbarVue,
-    reviewCard
+    reviewCard,
+    placeCard,
+    rideModal
+  },
+  data(){
+    return{
+      showModal: false
+    }
+  },
+  methods:{
+    revealModal(){
+      this.showModal = true
+
+      if(this.showModalHandler){
+        this.disableScroll()
+      }
+      else{
+        this.enableScroll()
+      }
+    },
+    onCloseModal(){
+      this.showModal = false
+      this.enableScroll()
+    },
+    disableScroll(){
+      let scrollTop = window.scrollY || document.documentElement.scrollTop;
+      let scrollLeft = window.scrollX || document.documentElement.scrollLeft
+
+      window.onscroll = () => {
+        window.scrollTo(scrollLeft, scrollTop)
+      }
+    },
+    enableScroll(){
+      window.onscroll = () => {window.scrollTo()}
+    }
+  },
+  computed:{
+    showModalHandler(){
+      return this.showModal
+    }
   }
 };
 </script>
@@ -170,4 +230,35 @@ export default {
         }  
       }
     }
+    .recommended-places-container{
+      padding: 23px 32px;
+      // margin-bottom: 20px;
+      .recommended-places{
+        @include flex-center;
+        justify-content: flex-start;
+        gap: 12px;
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+      }
+    }
+    .book-btns{
+      @include flex-center;
+      gap: 14px;
+      padding: 20px 36px 34px;
+      button{
+        width: 171px;
+        &:nth-child(1){
+          @include yellow-btn;
+        }
+        &:nth-child(2){
+          @include transparent-btn;
+        }
+      }
+    }
+    // .ride-modal-container{
+    //   position: absolute;
+    //   left: 0;
+    //   bottom: 0;
+    // }
 </style>
