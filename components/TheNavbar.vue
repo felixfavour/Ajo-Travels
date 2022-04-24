@@ -61,23 +61,20 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@media screen and (max-width: 428px) {
-  .nav {
-    display: flex;
-    max-width: 428px;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 46px;
-    padding: 0rem 1rem;
-    svg {
-      color: #9a9400;
-      cursor: pointer;
+.nav {
+  display: flex;
+  // max-width: 428px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 45px 32px;
+  svg {
+    color: #9a9400;
+    cursor: pointer;
     }
     img {
       width: 20px;
     }
-  }
 
   /// Dropdown
 
