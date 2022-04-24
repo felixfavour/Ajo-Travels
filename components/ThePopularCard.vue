@@ -10,25 +10,6 @@
           </p>
         </div>
       </div>
-
-      <div class="card">
-        <div class="card-text">
-          <h1>Landmark Beach</h1>
-          <p>
-            Sport activities, relaxation, <br />
-            restaurants, cafe and more
-          </p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-text">
-          <h1>Landmark Beach</h1>
-          <p>
-            Sport activities, relaxation, <br />
-            restaurants, cafe and more
-          </p>
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -37,8 +18,6 @@ export default {};
 </script>
 <style lang="scss" scoped>
 .cards-container {
-  width: 428px;
-  overflow: scroll;
   .scroll {
     display: flex;
     flex-direction: row;
@@ -48,7 +27,7 @@ export default {};
       background-image: url("../assets/img/landmark.jpeg");
       background-position: center;
       border-radius: 32px;
-      margin: 0rem 10px;
+      margin: 1rem 10px;
       height: 410px;
       transition: transform 500ms ease;
       .card-text {
@@ -64,7 +43,7 @@ export default {};
           line-height: 31px;
         }
         p {
-          width: 286px;
+          width: 276px;
           font-size: 14px;
           font-weight: 300;
         }
