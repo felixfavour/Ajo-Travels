@@ -9,12 +9,11 @@ export default {};
 </script>
 <style lang="scss" scoped>
 .search {
-  // position: absolute;
   border-radius: 30px;
-  margin: 0.5rem 0.5rem;
-  width: 304px;
+  width: 274px;
   height: 40px;
   padding: 0px 60px;
+  margin: 0rem 0.5rem;
   max-width: 364px;
   text-align: right;
   background-color: #c4c4c4;
