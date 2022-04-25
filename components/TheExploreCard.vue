@@ -15,10 +15,10 @@ export default {};
 .explore {
   background-image: url("../assets/img/nat-theather.jpeg");
   background-position: 0% 45%;
-  width: 389px;
+  width: 364px;
   height: 160px;
   border-radius: 32px;
-  padding: 1rem 0rem;
+  padding: 0.5rem 0rem;
   margin-top: 10px;
   .explore-text {
     color: #fff;
