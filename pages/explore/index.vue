@@ -10,8 +10,8 @@
       <div class="scroll">
         <div class="scroll-text" v-for="city in cities" :key="city.id">
           <TheScrollBar :city="city" />
+          <div class="line"></div>
         </div>
-        <div class="line"></div>
       </div>
       <div class="search">
         <TheSearchBar />
@@ -70,22 +70,32 @@ export default {
       }
     }
     .middle {
+      grid-area: mid;
+      ::-webkit-scrollbar {
+        height: 0px;
+        width: 0px;
+        background: white;
+      }
+      ::-webkit-scrollbar-thumb:horizontal {
+        background: #fff;
+        border-radius: 10px;
+      }
       .scroll {
+        position: relative;
+        margin-top: 40px;
         display: flex;
         flex-direction: row;
         overflow: scroll;
         max-width: 428px;
-        margin-bottom: 1.5rem;
-        margin-left: 0.5rem;
+
         .line {
-          height: 5.5px;
+          height: 2px;
           background: #fffee6;
           max-width: 428px;
         }
       }
       .search {
-        margin-top: 12px;
-        margin: 0rem 0.5rem;
+        margin: 2rem 0.5rem;
       }
     }
     .explore-container {
