@@ -1,0 +1,42 @@
+*{
+    font-family: 'Noto Sans', sans-serif;
+}
+body{
+    position: relative;
+}
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@mixin flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@mixin yellow-btn {
+    background: #FCF300;
+    border-radius: 56px;
+    padding: 19px 0px; 
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
+
+@mixin transparent-btn {
+    background: transparent;
+    border-radius: 56px;
+    padding: 19px 0px;
+    border: 1px solid #9A9400;
+    box-sizing: border-box;
+    color: #9A9400;
+    outline: none;
+    font-size: 14px;
+}
+
+// .img-container{
+//     width: 100vw;
+//     background-color: blue;
+// }
