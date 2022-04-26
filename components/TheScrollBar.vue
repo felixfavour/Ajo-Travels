@@ -1,8 +1,10 @@
 <template lang="">
   <div class="scroll-container">
     <div class="scroll-text">
-      <p>{{ city.name }}</p>
-      <div :class="active ? 'line' : ''"></div>
+      <nuxt-link :class="{ yellow: showYellow }" to="/explore">
+        <p @mouseover="setYellow" @mouseleave="hideYellow">{{ city.name }}</p>
+      </nuxt-link>
+      <div class="line"></div>
     </div>
   </div>
 </template>
@@ -14,11 +16,16 @@ export default {
   data() {
     return {
       cities: this.$store.state.cities,
-      active: true,
+      showYellow: false,
     };
   },
   methods: {
-    setActive() {},
+    setYellow() {
+      this.showYellow = !this.showYellow;
+    },
+    hideYellow() {
+      this.showYellow = !this.showYellow;
+    },
   },
 };
 </script>
@@ -29,24 +36,24 @@ export default {
     padding: 0rem 0.5rem;
     .scroll-text {
       display: flex;
-      gap: 80px;
+      gap: 60px;
       margin: 0rem 0.5rem;
-      p {
+      a {
         font-family: "Brown";
         color: #1d405a;
         font-size: 14px;
         font-weight: 400;
         cursor: pointer;
+        text-decoration: none;
       }
-    }
-    .line2 {
-      background-color: #fcf300;
-      height: 1.5px;
-    }
-
-    .line {
-      background-color: #fcf300;
-      height: 1.5px;
+      .yellow:after {
+        content: "";
+        position: absolute;
+        height: 2px;
+        bottom: 0;
+        width: 10%;
+        background: #fcf300;
+      }
     }
   }
 }

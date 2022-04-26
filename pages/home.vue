@@ -14,8 +14,8 @@
       <div class="scroll">
         <div class="scroll-text" v-for="city in cities" :key="city.id">
           <TheScrollBar :city="city" />
+          <div class="line"></div>
         </div>
-        <div class="line"></div>
       </div>
     </section>
     <section class="bottom">
@@ -71,6 +71,15 @@ export default {
     }
     .middle {
       grid-area: mid;
+      ::-webkit-scrollbar {
+        height: 0px;
+        width: 0px;
+        background: white;
+      }
+      ::-webkit-scrollbar-thumb:horizontal {
+        background: #fff;
+        border-radius: 10px;
+      }
       .scroll {
         position: relative;
         margin-top: 40px;
@@ -78,17 +87,9 @@ export default {
         flex-direction: row;
         overflow: scroll;
         max-width: 428px;
-        .scroll-text::after {
-          content: "";
-          position: absolute;
-          height: 3px;
-          left: 0;
-          bottom: 0;
-          width: 10%;
-          background: yellow;
-        }
+
         .line {
-          height: 5.5px;
+          height: 2px;
           background: #fffee6;
           max-width: 428px;
         }

@@ -10,8 +10,8 @@
       <div class="scroll">
         <div class="scroll-text" v-for="city in cities" :key="city.id">
           <TheScrollBar :city="city" />
+          <div class="line"></div>
         </div>
-        <div class="line"></div>
       </div>
       <div class="search">
         <TheSearchBar />
@@ -19,24 +19,9 @@
     </section>
     <section class="explore-container">
       <div class="explore-cards">
-        <div class="explore">
-          <div class="explore-text">
-            <h1>The National Museum</h1>
-            <p>African modern art gallery</p>
-          </div>
-        </div>
-        <div class="explore">
-          <div class="explore-text">
-            <h1>The National Museum</h1>
-            <p>African modern art gallery</p>
-          </div>
-        </div>
-        <div class="explore">
-          <div class="explore-text">
-            <h1>The National Museum</h1>
-            <p>African modern art gallery</p>
-          </div>
-        </div>
+        <TheExploreCard />
+        <TheExploreCard />
+        <TheExploreCard />
         <TheExploreCard />
       </div>
     </section>
@@ -63,29 +48,39 @@ export default {
         margin-top: 34px;
         padding: 0rem 1rem;
         h1 {
-          font-size: 34px;
+          font-size: 25px;
           font-weight: 900;
           color: #041a7a;
         }
       }
     }
     .middle {
+      grid-area: mid;
+      ::-webkit-scrollbar {
+        height: 0px;
+        width: 0px;
+        background: white;
+      }
+      ::-webkit-scrollbar-thumb:horizontal {
+        background: #fff;
+        border-radius: 10px;
+      }
       .scroll {
+        position: relative;
+        margin-top: 27px;
         display: flex;
         flex-direction: row;
         overflow: scroll;
         max-width: 428px;
-        margin-bottom: 1.5rem;
-        margin-left: 0.5rem;
+
         .line {
-          height: 5.5px;
+          height: 2px;
           background: #fffee6;
           max-width: 428px;
         }
       }
       .search {
-        margin-top: 12px;
-        margin: 0rem 0.5rem;
+        margin-top: 16px;
       }
     }
     .explore-container {
@@ -97,30 +92,8 @@ export default {
         margin-top: 1rem;
         overflow-y: scroll;
         overflow-x: hidden;
-        max-height: 630px;
+        max-height: 650px;
         padding: 0rem 3rem;
-        .explore {
-          background-image: url(" ../../assets/img/nat-theather.jpeg");
-          background-position: 0% 45%;
-          width: 389px;
-          height: 160px;
-          border-radius: 32px;
-          padding: 1rem 0rem;
-          margin-top: 10px;
-          .explore-text {
-            color: #fff;
-            margin-top: 4.2rem;
-            padding: 0.5rem 1rem;
-            h1 {
-              font-size: 20px;
-              line-height: 22.79px;
-            }
-            p {
-              font-size: 14px;
-              line-height: 18.23px;
-            }
-          }
-        }
       }
     }
   }
