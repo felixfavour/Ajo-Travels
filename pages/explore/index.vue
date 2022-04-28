@@ -8,8 +8,12 @@
     </section>
     <section class="middle">
       <div class="scroll">
-        <div class="scroll-text" v-for="city in cities" :key="city.id">
-          <TheScrollBar :city="city" />
+        <div
+          class="scroll-text"
+          v-for="(popCity, index) in cities"
+          :key="popCity.id"
+        >
+          <TheScrollBar :popCity="popCity" :index="index" />
           <div class="line"></div>
         </div>
       </div>
@@ -28,12 +32,25 @@
   </div>
 </template>
 <script>
+import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
+
 export default {
   transition: "discover",
   data() {
-    return {
-      cities: this.$store.state.cities,
-    };
+    return {};
+  },
+  computed: {
+    ...mapState({
+      cities: (state) => state.cities,
+      popularPlaces: (state) => state.popularPlaces,
+    }),
+  },
+  methods: {
+    ...mapActions(["getPopularPlaces", "getTopCities"]),
+  },
+  async fetch({ store }) {
+    await store.dispatch("getTopCities");
+    await store.dispatch("getPopularPlaces");
   },
 };
 </script>

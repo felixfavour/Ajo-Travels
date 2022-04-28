@@ -1,8 +1,10 @@
 <template lang="">
   <div class="scroll-container">
     <div class="scroll-text">
-      <nuxt-link :class="{ yellow: showYellow }" to="/explore">
-        <p @mouseover="setYellow" @mouseleave="hideYellow">{{ city.name }}</p>
+      <nuxt-link :class="{ yellow: showYellow }" to="/explore" target="_blank">
+        <p @mouseover="setYellow" @mouseleave="hideYellow">
+          {{ popCity.city }}
+        </p>
       </nuxt-link>
       <div class="line"></div>
     </div>
@@ -11,11 +13,11 @@
 <script>
 export default {
   props: {
-    city: Object,
+    popCity: Object,
+    index: Number,
   },
   data() {
     return {
-      cities: this.$store.state.cities,
       showYellow: false,
     };
   },
@@ -34,10 +36,13 @@ export default {
   .scroll-container {
     overflow: scroll;
     padding: 0rem 0.5rem;
+    // width: 184px;
     .scroll-text {
       display: flex;
       gap: 60px;
-      margin: 0rem 0.5rem;
+      padding: 0rem 0.5rem;
+      width: max-content;
+
       a {
         font-family: "Brown";
         color: #1d405a;
@@ -50,8 +55,8 @@ export default {
         content: "";
         position: absolute;
         height: 2px;
+        width: 60px;
         bottom: 0;
-        width: 10%;
         background: #fcf300;
       }
     }

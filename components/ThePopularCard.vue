@@ -1,69 +1,67 @@
 <template lang="">
   <div class="cards-container">
     <div class="scroll">
-      <nuxt-link to="/explore/id">
+      <a @click="getPlaceImage">
         <div class="card">
           <div class="card-text">
-            <h1>Landmark Beach</h1>
+            <h1>{{ place.fullSearchResult.name }}</h1>
             <p>
-              Sport activities, relaxation, <br />
-              restaurants, cafe and more
+              {{ place.fullSearchResult.vicinity }}
             </p>
+            <img
+              src="https://lh3.googleusercontent.com/places/AAcXr8oitbZRPPGdK0-3GQp2lnrNeGclN1wh34J_vrmPDlGWFdxc2zssvzhCE16I8eupGiccuYmpl4_VGvkQXy6jOzqj76feJ20VAoQ=s1600-w1600-h1600"
+              alt=""
+            />
           </div>
         </div>
-      </nuxt-link>
-
-      <nuxt-link to="/explore/:id">
-        <div class="card">
-          <div class="card-text">
-            <h1>Landmark Beach</h1>
-            <p>
-              Sport activities, relaxation, <br />
-              restaurants, cafe and more
-            </p>
-          </div>
+        <div>
+          {{ JSON.stringify(place.fullSearchResult.photos[0].photo_reference) }}
         </div>
-      </nuxt-link>
-      <nuxt-link to="/explore/id">
-        <div class="card">
-          <div class="card-text">
-            <h1>Landmark Beach</h1>
-            <p>
-              Sport activities, relaxation, <br />
-              restaurants, cafe and more
-            </p>
-          </div>
-        </div>
-      </nuxt-link>
-      <nuxt-link to="/explore/id">
-        <div class="card">
-          <div class="card-text">
-            <h1>Landmark Beach</h1>
-            <p>
-              Sport activities, relaxation, <br />
-              restaurants, cafe and more
-            </p>
-          </div>
-        </div>
-      </nuxt-link>
+      </a>
     </div>
   </div>
 </template>
 <script>
-export default {};
+import axios from "axios";
+export default {
+  props: ["place", "name", "id", "index"],
+  data: function () {
+    return {
+      photoReference: this.place.fullSearchResult.photos[0].photo_reference,
+    };
+  },
+  methods: {
+    async getPlaceImage() {
+      console.log(this.photoReference);
+      // await axios
+      //   .get(
+      //     `https://google-maps28.p.rapidapi.com/maps/api/place/photo?photo_reference=${this.photoReference}&maxwidth=1600&maxheight=1600`,
+      //     {
+      //       headers: {
+      //         "X-RapidAPI-Host": "google-maps28.p.rapidapi.com",
+      //         "X-RapidAPI-Key":
+      //           "ee0219cfdfmshd0edb4d1f8464abp124dd2jsnb5dc821c8d60",
+      //       },
+      //     }
+      //   )
+      //   .then((res) => {
+      //     console.log(res);
+      //   })
+      //   .catch((err) => {
+      //     console.log(err.message);
+      //   });
+    },
+  },
+};
 </script>
 <style lang="scss" scoped>
 .cards-container {
   .scroll {
-    display: flex;
-    flex-direction: row;
-    width: 246px;
     a {
       text-decoration: none;
       .card {
-        background-image: url("../assets/img/landmark.jpeg");
         background-position: center;
-        border-radius: 32px;
+        position: relative;
         margin: 1rem 10px;
         height: 410px;
         transition: transform 500ms ease;
@@ -72,18 +70,26 @@ export default {};
           display: flex;
           flex-direction: column;
           color: #fff;
-          padding: 0rem 0.8rem;
           h1 {
             font-size: 25px;
             margin: 0px;
             line-height: 31px;
             margin-top: 290px;
+            padding: 0rem 0.8rem;
           }
           p {
             width: 276px;
-            font-family: serif;
+            font-family: "Brown";
             font-size: 14px;
             font-weight: 300;
+            padding: 0rem 0.8rem;
+          }
+          img {
+            position: absolute;
+            z-index: -1;
+            width: 296px;
+            height: 410px;
+            border-radius: 32px;
           }
         }
       }

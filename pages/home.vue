@@ -11,30 +11,54 @@
       <div class="search">
         <TheSearchBar />
       </div>
-      <div class="scroll">
-        <div class="scroll-text" v-for="city in cities" :key="city.id">
-          <TheScrollBar :city="city" />
+      <div v-if="error">
+        <TheErrorCard />
+      </div>
+      <div class="scroll" v-if="!error">
+        <div
+          class="scroll-text"
+          v-for="(popCity, index) in cities"
+          :key="popCity.id"
+        >
+          <TheScrollBar :popCity="popCity" :index="index" />
           <div class="line"></div>
         </div>
       </div>
     </section>
-    <section class="bottom">
+    <section class="bottom" v-if="!error">
       <div class="title">
         <h1>Popular</h1>
       </div>
       <div class="pop-cards">
-        <ThePopularCard />
+        <div v-for="(place, index) in popularPlaces" :key="place.id">
+          <ThePopularCard :place="place" :index="index" :id="place.id" />
+        </div>
       </div>
     </section>
   </div>
 </template>
 <script>
+import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
+
 export default {
   transition: "home",
   data() {
     return {
-      cities: this.$store.state.cities,
+      error: "",
     };
+  },
+  computed: {
+    ...mapState({
+      cities: (state) => state.cities,
+      popularPlaces: (state) => state.popularPlaces,
+    }),
+  },
+  methods: {
+    ...mapActions(["getPopularPlaces", "getTopCities"]),
+  },
+  async fetch({ store }) {
+    await store.dispatch("getTopCities");
+    await store.dispatch("getPopularPlaces");
   },
 };
 </script>
@@ -105,7 +129,9 @@ export default {
         }
       }
       .pop-cards {
-        width: 428px;
+        display: flex;
+        flex-direction: row;
+        width: 423px;
         overflow: scroll;
       }
     }
