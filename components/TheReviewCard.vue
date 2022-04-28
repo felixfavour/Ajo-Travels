@@ -1,21 +1,23 @@
 <template>
-    <div class="review-card">
-        <div class="review-img">
-            <img src="../assets/img/review-pic.png" alt="review">
-        </div>
-        <div class="review-content">
-            <div class="review-heading">
-                <div class="review-name">
-                    <h3>Temi Salau</h3>
-                </div>
-                <div class="star-ratings">
-                    <img v-for="star in starRatings" :key="star" src="../assets/img/star-ratings.svg" alt="star ratings">
-                </div>
+    <div class="review-card-component">
+        <div class="review-card">
+            <div class="review-img">
+                <img src="../assets/img/review-pic.png" alt="review">
             </div>
-            <div class="review-description">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et do.
-                </p>
+            <div class="review-content">
+                <div class="review-heading">
+                    <div class="review-name">
+                        <h3>Temi Salau</h3>
+                    </div>
+                    <div class="star-ratings">
+                        <img v-for="star in starRatings" :key="star" src="../assets/img/star-ratings.svg" alt="star ratings">
+                    </div>
+                </div>
+                <div class="review-description">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et do.
+                    </p>
+                </div>
             </div>
         </div>
     </div>
@@ -42,9 +44,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.review-card-component{
+        width: 267px;
+}
     .review-card{
         @include flex-center;
-        width: 267px;
+        width: 100%;
         gap: 10.32px;
         align-items: flex-start;
         padding: 22px;

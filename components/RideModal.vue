@@ -1,7 +1,7 @@
 <template>
     <div class="modal-container">
         <div class="modal">
-            <div class="modal-top">
+            <div draggable="true" @dragstart="initiateDrag" @dragend="closeModal" class="modal-top">
                 <div class="close-panel">
                     <div></div>
                 </div>
@@ -39,7 +39,15 @@ export default {
     },
     methods:{
         closeModal(){
-            this.$emit('close-modal')
+            this.$emit('close-modal');
+            console.log("I'm being dragged");
+        },
+        initiateDrag(e){
+            let dragged = e.target;
+            for(let i = dragged.style.height; i > 0; i--){
+                console.log("This is my height" + i);
+            }
+            // dragged.style.height = 100 + "px";
         },
         activateBoltHandler(){
             this.activateBolt = true
