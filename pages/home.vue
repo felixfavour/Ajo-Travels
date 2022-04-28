@@ -11,7 +11,10 @@
       <div class="search">
         <TheSearchBar />
       </div>
-      <div class="scroll">
+      <div v-if="error">
+        <TheErrorCard />
+      </div>
+      <div class="scroll" v-if="!error">
         <div
           class="scroll-text"
           v-for="(popCity, index) in cities"
@@ -22,7 +25,7 @@
         </div>
       </div>
     </section>
-    <section class="bottom">
+    <section class="bottom" v-if="!error">
       <div class="title">
         <h1>Popular</h1>
       </div>
@@ -40,7 +43,9 @@ import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
 export default {
   transition: "home",
   data() {
-    return {};
+    return {
+      error: "",
+    };
   },
   computed: {
     ...mapState({
@@ -49,12 +54,11 @@ export default {
     }),
   },
   methods: {
-    ...mapActions(["getPopularPlaces", "getTopCities, 'getPlaceImage"]),
+    ...mapActions(["getPopularPlaces", "getTopCities"]),
   },
   async fetch({ store }) {
     await store.dispatch("getTopCities");
     await store.dispatch("getPopularPlaces");
-    await store.dispatch("getPlaceImage");
   },
 };
 </script>
