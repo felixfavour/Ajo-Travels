@@ -28,17 +28,17 @@
 </template>
 
 <script>
-  export default {
-    name:'FooteR'
-  }
+export default {
+  name: 'FooteR',
+}
 </script>
 
 <style scoped>
-.footer-container{
+.footer-container {
   background-color: #fdf86bbd;
 }
-.content{
-  border-bottom: 1px solid rgb(192,192,192,0.3);
+.content {
+  border-bottom: 1px solid rgb(192, 192, 192, 0.3);
   margin: 0 4rem 0 4rem;
   padding: 68px 0 86px 0;
   display: flex;
@@ -46,16 +46,16 @@
   align-content: center;
   column-gap: 433px;
 }
-.logo{
+.logo {
   background-image: url(~assets/images/bird-logo.svg);
   width: 131px;
   height: 60.97px;
 }
-.info{
+.info {
   display: flex;
   column-gap: 50px;
 }
-.courtesy{
+.courtesy {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -66,15 +66,15 @@
   font-family: 'Cereal Light';
   font-weight: 300;
 }
-.header{
+.header {
   font-size: 18px;
   line-height: 36px;
   margin-bottom: 1rem;
   font-family: 'Cereal Bold';
   font-family: 700;
 }
-.info p{
-  margin-bottom: .5rem;
+.info p {
+  margin-bottom: 0.5rem;
   font-size: 15px;
   line-height: 36px;
   font-family: 'Cereal Light';
