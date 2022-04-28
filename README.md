@@ -1,9 +1,10 @@
 # ajo-interns-project
 
-### Flagship project for 2022 Acumen Interns.
+# Flagship project for 2022 Acumen Interns.
 
-Design:
-<a href="https://www.figma.com/file/zb7v40Zq1fKUQTpqVeQLbR/Acumen-Internship(Odu-David)">Figma</a>
+## Figma Design:
+
+### <a href="https://www.figma.com/file/zb7v40Zq1fKUQTpqVeQLbR/Acumen-Internship(Odu-David)?node-id=442%3A6618">Figma</a>
 
 ## Build Setup
 

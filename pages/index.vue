@@ -1,5 +1,16 @@
 <template>
   <main>
+    <div class="container">
+      <NavBar />
+      <div class="background-images">
+        <div class="phones"></div>
+        <div class="store"></div>
+      </div>
+      <Details />
+      <Cards />
+      <Review />
+      <Footer />
+    </div>
     <div class="logo">
       <img src="../assets/img/ajo-logo.png" alt="" />
     </div>
@@ -21,14 +32,38 @@
 </template>
 
 <script>
-import TheButton from "~/components/TheButton.vue";
+import TheButton from '~/components/TheButton.vue'
+import Footer from '~/components/Footer.vue'
 export default {
-  name: "IndexPage",
-  transition: "start",
-  components: { TheButton },
-};
+  name: 'IndexPage',
+  transition: 'start',
+  components: { TheButton, Footer },
+}
 </script>
 <style lang="scss" scoped>
+@media screen and (min-width: 428px) {
+  .container {
+    max-width: 1440px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .phones {
+    background-image: url(~assets/images/phone.png);
+    position: absolute;
+    width: 580.49px;
+    height: 701.75px;
+    top: 443px;
+    left: 430px;
+  }
+  .store {
+    background-image: url(~assets/images/stores.png);
+    position: absolute;
+    width: 535px;
+    height: 84px;
+    top: 1241px;
+    left: 464px;
+  }
+}
 @media screen and (max-width: 428px) {
   main {
     display: flex;
@@ -37,7 +72,7 @@ export default {
     width: 428px;
     height: 926px;
     background-image: linear-gradient(to bottom, #041a7acc, #041a7acc 80%),
-      url("../assets/img/home-bg.png");
+      url('../assets/img/home-bg.png');
     background-position: center;
     background-size: 542px 926px;
     background-repeat: no-repeat;
@@ -52,7 +87,7 @@ export default {
       }
     }
     .title {
-      font-family: "AirbnbCereal_W_Bd";
+      font-family: 'AirbnbCereal_W_Bd';
       letter-spacing: 2px;
     }
     .text {
@@ -67,11 +102,11 @@ export default {
         font-style: normal;
         font-weight: 700;
         font-size: 24px;
-        font-family: "AirbnbCereal_W_md";
+        font-family: 'AirbnbCereal_W_md';
         width: 305px;
       }
       h1::after {
-        content: "";
+        content: '';
         position: absolute;
         height: 4px;
         left: 0;
@@ -84,7 +119,7 @@ export default {
       }
 
       p {
-        font-family: "AirbnbCereal_W_lt";
+        font-family: 'AirbnbCereal_W_lt';
         font-size: 14px;
         font-weight: 300;
         width: 343px;
@@ -101,7 +136,7 @@ export default {
       a {
         text-decoration: none;
         font-weight: 500;
-        font-family: "AirbnbCereal_W_lt";
+        font-family: 'AirbnbCereal_W_lt';
       }
     }
   }
