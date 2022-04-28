@@ -1,6 +1,6 @@
 <template lang="">
   <div class="search">
-    <!-- <input class="input" type="search" /> -->
+    <input class="input" type="search" />
     <font-awesome-icon icon="magnifying-glass" />
   </div>
 </template>
@@ -9,28 +9,31 @@ export default {};
 </script>
 <style lang="scss" scoped>
 .search {
-  border-radius: 30px;
-  width: 274px;
-  height: 40px;
-  padding: 0px 60px;
-  margin: 0rem 0.5rem;
   max-width: 364px;
   text-align: right;
-  background-color: #c4c4c4;
   input {
-    border: 0px solid #c4c4c4;
-    background-color: #c4c4c4;
-    border-radius: 30px;
+    position: absolute;
+    left: 32px;
+    height: 40px;
+    width: 364px;
+
+    background: rgba(235, 235, 235, 0.5);
+    border: 0.5px solid rgba(196, 196, 196, 0.3);
+    box-sizing: border-box;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.14);
+    border-radius: 32px;
     padding: 0rem 1.5rem;
   }
   .input:focus {
-    border: 0px #c4c4c4;
+    border: 0px solid #c4c4c4;
   }
   svg {
-    position: absolute;
+    position: relative;
     width: 20.01px;
+    height: 20px;
     text-align: center;
     padding: 10px 0px;
+    color: #041a7a;
   }
 }
 </style>
