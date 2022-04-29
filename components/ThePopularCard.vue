@@ -1,7 +1,7 @@
 <template lang="">
   <div class="cards-container">
     <div class="scroll">
-      <a href="/explore/:id" target="_blank">
+      <a @click="getPlaceImage">
         <div class="card">
           <div class="card-text">
             <h1>{{ place.fullSearchResult.name }}</h1>
@@ -14,17 +14,43 @@
             />
           </div>
         </div>
+        <div>
+          {{ JSON.stringify(place.fullSearchResult.photos[0].photo_reference) }}
+        </div>
       </a>
     </div>
   </div>
 </template>
 <script>
+import axios from "axios";
 export default {
-  props: {
-    place: Object,
-    name: String,
-    id: String,
-    index: Number,
+  props: ["place", "name", "id", "index"],
+  data: function () {
+    return {
+      photoReference: this.place.fullSearchResult.photos[0].photo_reference,
+    };
+  },
+  methods: {
+    async getPlaceImage() {
+      console.log(this.photoReference);
+      // await axios
+      //   .get(
+      //     `https://google-maps28.p.rapidapi.com/maps/api/place/photo?photo_reference=${this.photoReference}&maxwidth=1600&maxheight=1600`,
+      //     {
+      //       headers: {
+      //         "X-RapidAPI-Host": "google-maps28.p.rapidapi.com",
+      //         "X-RapidAPI-Key":
+      //           "ee0219cfdfmshd0edb4d1f8464abp124dd2jsnb5dc821c8d60",
+      //       },
+      //     }
+      //   )
+      //   .then((res) => {
+      //     console.log(res);
+      //   })
+      //   .catch((err) => {
+      //     console.log(err.message);
+      //   });
+    },
   },
 };
 </script>

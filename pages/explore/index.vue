@@ -46,12 +46,11 @@ export default {
     }),
   },
   methods: {
-    ...mapActions(["getPopularPlaces", "getTopCities, 'getPlaceImage"]),
+    ...mapActions(["getPopularPlaces", "getTopCities"]),
   },
   async fetch({ store }) {
     await store.dispatch("getTopCities");
     await store.dispatch("getPopularPlaces");
-    await store.dispatch("getPlaceImage");
   },
 };
 </script>
