@@ -15,7 +15,7 @@
                 </div>
                 <div class="review-description">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et do.
+                        {{review.content}}
                     </p>
                 </div>
             </div>
@@ -26,6 +26,12 @@
 <script>
 export default {
     name: "reviewCard",
+    props:{
+        review:{
+            Required: true,
+            type: Object
+        }
+    },
     data(){
         return{
             stars: 5,
@@ -34,11 +40,15 @@ export default {
     computed: {
         starRatings(){
             let starArray = [];
-            for(let i = 0; i < this.stars; i++){
+            for(let i = 0; i < this.review.rating; i++){
                 starArray.push(i)
             }
             return starArray;
         }
+    },
+    async fetch({ store }){
+        await this.$store.dispatch("getUser", review.user_id);
+        console.log("Fetching...");
     }
 }
 </script>

@@ -1,4 +1,3 @@
-import { faCodeCommit } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios'
 
 export const state = () => ({
@@ -6,6 +5,7 @@ export const state = () => ({
   popularPlaces: [],
   cities: [],
   reviews: [],
+  user: []
 });
 
 export const mutations = {
@@ -21,6 +21,12 @@ export const mutations = {
   getImages(imageData) {
     this.state.images = imageData;
   },
+  addReviews( state, reviews ) {
+    state.reviews = reviews
+  },
+  addUser( state, user ){
+    state.user = user
+  }
 };
 
 export const actions = {
@@ -67,6 +73,24 @@ export const actions = {
         console.log(err.message);
       });
   },
+
+  async getReviews({ commit }){
+    try {
+      const reviews = await axios.get('https://ajo-app.herokuapp.com/api/app/reviews')
+      commit('addReviews', reviews.data)
+    } catch (error) {
+      console.log(error.message);
+    }
+  },
+  async getUser({ commit }, userId){
+    try {
+      const user = await this.$axios.get(`/user/profile/${userId}`)
+      commit('addUser', user)
+      console.log(userId, user);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 };
 
 export const getters = {};

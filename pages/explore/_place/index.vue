@@ -41,15 +41,11 @@
     </div>
     <div class="reviews-container">
         <div class="reviews-header">
-          <p>20 Reviews</p>
-          <p>See All</p>
+          <p>{{numberOfReviews}}</p>
+          <p v-if="seeAllReviews">See All</p>
         </div>
         <div class="review-card-container">
-          <review-card v-for="review in reviews" :key="review._id" />
-          <review-card v-for="review in reviews" :key="review._id" />
-          <review-card v-for="review in reviews" :key="review._id" />
-          <review-card v-for="review in reviews" :key="review._id" />
-          <review-card v-for="review in reviews" :key="review._id" />
+          <review-card v-for="review in reviews" :key="review._id" :review="review" />
         </div>
     </div>
     <div class="recommended-places-container">
@@ -126,6 +122,20 @@ export default {
   computed:{
     reviews(){
       return this.$store.state.reviews
+    },
+    numberOfReviews(){
+      let reviewArray = this.$store.state.reviews
+      if(reviewArray.lenght > 1 || reviewArray.length == 0){
+        return reviewArray.length + " reviews"
+      }
+      return reviewArray.length + " review"
+    },
+    seeAllReviews(){
+      let reviewArray = this.$store.state.reviews
+      if(reviewArray.length > 3){
+        return true
+      }
+      return false
     }
   },
   async fetch({ store }){
@@ -242,8 +252,11 @@ export default {
         }  
       }
       .review-card-container{
-        @include flex-center;
-        gap: 26px;
+        width: 100%;
+        display: inline-flex;
+        gap: 60px;
+        overflow-x: auto;
+        overflow-y: hidden;
       }
     }
     .recommended-places-container{
