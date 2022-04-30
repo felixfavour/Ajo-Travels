@@ -17,34 +17,26 @@
               Use Uppercase, Lowercase and Numeric characters*
             </span>
           </div>
-          <div class="methods">
-            <span>____________ </span>
-            <p>Or Sign Up with</p>
-            <span>____________ </span>
-          </div>
-          <div class="socials">
-            <div class="acc">
-              <font-awesome-icon icon="fa-brands fa-apple" />
-              <font-awesome-icon icon="fa-brands fa-google" />
-              <font-awesome-icon icon="fa-brands fa-facebook-f" />
+          <div>
+            <div class="btn">
+              <button type="submit">
+                <TheButton title="Sign In" value="yellowBgLg" />
+              </button>
             </div>
           </div>
         </form>
       </div>
     </section>
     <div class="reg">
-      <div class="btn">
-        <TheButton title="Back to home page" value="yellowBgLg" />
-      </div>
       <div class="back">
-        <p>Already have an account?</p>
-        <nuxt-link to="/TheRegister"><span>Login</span></nuxt-link>
+        <p>Don't have an account?</p>
+        <nuxt-link to="/auth/register"><span>Register</span></nuxt-link>
       </div>
     </div>
   </div>
 </template>
 <script>
-export default {};
+export default {}
 </script>
 <style lang="scss" scoped>
 @media screen and (max-width: 428px) {
@@ -57,8 +49,9 @@ export default {};
           font-size: 32px;
         }
         h1 {
-          font-family: "Brown";
+          font-family: 'Brown';
           color: #041a7a;
+          margin-top: 32px;
         }
       }
       form {
@@ -66,7 +59,7 @@ export default {};
           display: flex;
           flex-direction: column;
           label {
-            font-family: "Brown";
+            font-family: 'Brown';
             font-weight: normal;
             font-size: 12px;
             margin: 16px 0px;
@@ -74,14 +67,14 @@ export default {};
             line-height: 16px;
           }
           input {
-            height: 40px;
+            height: 50px;
             margin-bottom: 1rem;
             border: 1px solid #ccc;
             border-radius: 5px;
             padding: 0.1rem 0.5rem;
           }
           span {
-            font-family: "Brown";
+            font-family: 'Brown';
             font-weight: normal;
             font-size: 12px;
             margin-bottom: 10px;
@@ -98,7 +91,7 @@ export default {};
           p {
             margin-bottom: 0px;
             padding: 0px 5px;
-            font-family: "Brown";
+            font-family: 'Brown';
             font-size: 16px;
           }
         }
@@ -128,9 +121,12 @@ export default {};
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      font-family: "Brown";
+      font-family: 'Brown';
       .btn {
         margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+        text-align: center;
       }
       .back {
         display: flex;
@@ -143,6 +139,10 @@ export default {};
           font-weight: 200;
         }
       }
+    }
+    button {
+      background: transparent;
+      border: 0px;
     }
   }
 }
