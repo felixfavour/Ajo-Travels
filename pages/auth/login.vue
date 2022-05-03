@@ -6,20 +6,20 @@
           <font-awesome-icon icon="x" />
           <h1>Sign Up to Ajo</h1>
         </div>
-        <form @submit.prevent enctype="multipart/form-data">
+        <form @submit="login()" enctype="multipart/form-data" method="post">
           <div class="fields">
             <label for="email"><strong>Email Address</strong></label>
-            <input type="email" name="email" />
+            <input type="email" name="email" v-model="email" />
 
             <label for="email"><strong>Password</strong></label>
-            <input type="password" name="email" />
+            <input type="password" name="email" v-model="password" />
             <span class="forgot">
               Use Uppercase, Lowercase and Numeric characters*
             </span>
           </div>
           <div>
             <div class="btn">
-              <button type="submit">
+              <button type="button" @click="login()">
                 <TheButton title="Sign In" value="yellowBgLg" />
               </button>
             </div>
@@ -36,7 +36,39 @@
   </div>
 </template>
 <script>
-export default {}
+import axios from 'axios'
+export default {
+  data() {
+    return {
+      email: '',
+      password: '',
+      userInfo: this.$store.state.userDetails,
+    }
+  },
+  methods: {
+    async login() {
+      const data = {
+        email: this.email,
+        password: this.password,
+      }
+      axios
+        .post('https://ajo-app.herokuapp.com/api/auth/signin', data)
+        .then((res) => {
+          const userData = res.data
+          userData.user.token = userData.token
+          this.$store.commit('setUserDetails', userData.user)
+          this.$toasted.show('You have logged in successfully', {
+            theme: 'primary',
+            position: 'top-center',
+            duration: 5000,
+            type: 'success',
+          })
+          this.$router.push('/home')
+        })
+      console.log(this.$store.state.userDetails)
+    },
+  },
+}
 </script>
 <style lang="scss" scoped>
 @media screen and (max-width: 428px) {

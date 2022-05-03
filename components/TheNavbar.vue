@@ -25,22 +25,24 @@
     </div>
     <div class="nav">
       <font-awesome-icon icon="bars" @click="showDropdown = !showDropdown" />
-      <nuxt-link to="/">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="currentColor"
-          class="bi bi-person-circle"
-          viewBox="0 0 16 16"
-        >
-          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-          <path
-            fill-rule="evenodd"
-            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
-          />
-        </svg>
-      </nuxt-link>
+      <div>
+        <nuxt-link to="/auth/login">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-person-circle"
+            viewBox="0 0 16 16"
+          >
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+            <path
+              fill-rule="evenodd"
+              d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
+            />
+          </svg>
+        </nuxt-link>
+      </div>
     </div>
   </div>
 </template>
@@ -49,18 +51,18 @@ export default {
   data() {
     return {
       showDropdown: false,
-    };
+    }
   },
   methods: {
     toggleDropdown() {
-      console.log("tada");
-      this.showDropdown == !this.showDropdown;
+      console.log('tada')
+      this.showDropdown == !this.showDropdown
     },
     closeDropDown() {
-      this.showDropdown == !this.showDropdown;
+      this.showDropdown == !this.showDropdown
     },
   },
-};
+}
 </script>
 <style lang="scss" scoped>
 .nav {
@@ -73,10 +75,10 @@ export default {
   svg {
     color: #9a9400;
     cursor: pointer;
-    }
-    img {
-      width: 20px;
-    }
+  }
+  img {
+    width: 20px;
+  }
 
   /// Dropdown
 
@@ -102,7 +104,7 @@ export default {
           gap: 10px;
           text-decoration: none;
           h1 {
-            font-family: "AirbnbCereal_W_Md";
+            font-family: 'AirbnbCereal_W_Md';
             color: #041a7a;
           }
         }
@@ -121,7 +123,7 @@ export default {
       display: flex;
       flex-direction: column;
       a {
-        font-family: "AirbnbCereal_W_lt";
+        font-family: 'AirbnbCereal_W_lt';
         color: #393939;
         padding-bottom: 1.5rem;
         padding-top: 0.8rem;

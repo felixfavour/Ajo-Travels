@@ -6,20 +6,30 @@
           <font-awesome-icon icon="x" />
           <h1>Sign Up to Ajo</h1>
         </div>
-        <form @submit.prevent enctype="multipart/form-data">
+        <form @submit="register()" enctype="multipart/form-data" method="post">
+          <div class="names">
+            <div class="name">
+              <label for="firstname"><strong>First Name</strong></label>
+              <input type="text" name="firstname" v-model="firstname" />
+            </div>
+            <div class="name">
+              <label for="lastname"><strong>Last Name</strong></label>
+              <input type="text" name="lastname" v-model="lastname" />
+            </div>
+          </div>
           <div class="fields">
             <label for="email"><strong>Email Address</strong></label>
-            <input type="email" name="email" />
+            <input type="email" name="email" v-model="email" />
 
-            <label for="email"><strong>Password</strong></label>
-            <input type="password" name="email" />
+            <label for="password"><strong>Password</strong></label>
+            <input type="password" name="password" v-model="password" />
             <span class="forgot">
               Use Uppercase, Lowercase and Numeric characters*
             </span>
           </div>
 
           <div class="btn">
-            <button type="submit">
+            <button type="button" @click="register()">
               <TheButton title="Register" value="yellowBgLg" />
             </button>
           </div>
@@ -47,7 +57,43 @@
   </div>
 </template>
 <script>
-export default {}
+import axios from 'axios'
+export default {
+  data() {
+    return {
+      firstname: '',
+      lastname: '',
+      email: '',
+      password: '',
+      error: null,
+    }
+  },
+
+  methods: {
+    async register() {
+      const data = {
+        firstname: this.firstname,
+        lastname: this.lastname,
+        email: this.email,
+        password: this.password,
+      }
+      axios
+        .post('https://ajo-app.herokuapp.com/api/auth/signup', data)
+        .then((res) => {
+          const userData = res.data
+          console.log(userData)
+          this.$toasted.show('You have registered successfully', {
+            theme: 'primary',
+            position: 'top-center',
+            duration: 5000,
+            type: 'success',
+          })
+          this.$router.push('/auth/login')
+        })
+      console.log(this.$store.state.userDetails)
+    },
+  },
+}
 </script>
 <style lang="scss" scoped>
 @media screen and (max-width: 428px) {
@@ -66,9 +112,36 @@ export default {}
         }
       }
       form {
+        .names {
+          display: flex;
+          flex-direction: row;
+          gap: 20px;
+          .name {
+            display: flex;
+            flex-direction: column;
+
+            label {
+              font-family: 'Brown';
+              font-weight: normal;
+              font-size: 12px;
+              margin: 16px 0px;
+              color: #686868;
+              line-height: 16px;
+            }
+            input {
+              height: 50px;
+              width: 170px;
+              margin-bottom: 1rem;
+              border: 1px solid #ccc;
+              border-radius: 5px;
+              padding: 0.1rem 0.5rem;
+            }
+          }
+        }
         .fields {
           display: flex;
           flex-direction: column;
+
           label {
             font-family: 'Brown';
             font-weight: normal;

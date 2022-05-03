@@ -8,14 +8,14 @@
         <h1>Not Found</h1>
         <p>Check the spelling and try again</p>
       </div>
-      <div class="btn">
+      <nuxt-link to="/auth/login" class="btn">
         <TheButton title="Back to homepage" value="yellowBgLg" />
-      </div>
+      </nuxt-link>
     </main>
   </div>
 </template>
 <script>
-export default {};
+export default {}
 </script>
 <style lang="scss" scoped>
 main {
@@ -41,6 +41,9 @@ main {
   .btn {
     margin-top: 72px;
     margin-bottom: 130px;
+  }
+  a {
+    text-decoration: none;
   }
 }
 </style>

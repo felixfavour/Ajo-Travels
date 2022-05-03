@@ -12,29 +12,23 @@
     "lintfix": "npm run lint:js -- --fix"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-brands-svg-icons": "^6.1.1",
     "@fortawesome/free-regular-svg-icons": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
-    "@fortawesome/vue-fontawesome": "^2.0.6",
+    "@nuxtjs/auth-next": "5.0.0-1648802546.c9880dc",
     "@nuxtjs/axios": "^5.13.6",
-    "@nuxtjs/fontawesome": "^1.1.2",
     "@nuxtjs/pwa": "^3.3.5",
     "core-js": "^3.19.3",
+    "install": "^0.13.0",
+    "npm": "^8.8.0",
     "nuxt": "^2.15.8",
     "nuxt-fontawesome": "^0.4.0",
-    "scss": "^0.2.4",
-    "lint:prettier": "prettier --check .",
-    "lint": "npm run lint:js && npm run lint:prettier",
-    "lintfix": "prettier --write --list-different . && npm run lint:js -- --fix"
-  },
-  "dependencies": {
-    "@nuxtjs/axios": "^5.13.6",
-    "core-js": "^3.19.3",
-    "nuxt": "^2.15.8",
     "vue": "^2.6.14",
     "vue-server-renderer": "^2.6.14",
     "vue-template-compiler": "^2.6.14",
+    "vue-toasted": "^1.1.28",
+    "vuex": "^3.4.0",
+    "vuex-persist": "^3.1.3",
     "webpack": "^4.46.0"
   },
   "devDependencies": {
@@ -43,14 +37,11 @@
     "@nuxtjs/eslint-module": "^3.0.2",
     "@nuxtjs/style-resources": "^1.2.1",
     "eslint": "^8.4.1",
-    "eslint-plugin-nuxt": "^3.1.0",
-    "eslint-plugin-vue": "^8.2.0",
-    "sass": "^1.50.1",
-    "sass-loader": "^10.2.1",
-    "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-nuxt": "^3.1.0",
     "eslint-plugin-vue": "^8.2.0",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "sass": "^1.50.1",
+    "sass-loader": "^10.2.1"
   }
 }
