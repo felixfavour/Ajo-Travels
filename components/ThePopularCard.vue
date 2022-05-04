@@ -31,7 +31,6 @@ export default {
     }
   },
   methods: {
-<<<<<<< HEAD
     async getPlaceImage() {
       console.log(this.photoReference)
       await axios
@@ -52,9 +51,6 @@ export default {
           console.log(err.message)
         })
     },
-=======
-    async getPlaceImage() {},
->>>>>>> emeka
   },
 }
 </script>
