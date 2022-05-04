@@ -18,7 +18,6 @@
       <div class="text">
         <h2>We understand, exploring cities can be hard</h2>
       </div>
-      <!-- <div class="yellow"></div> -->
     </div>
   </div>
 </template>
