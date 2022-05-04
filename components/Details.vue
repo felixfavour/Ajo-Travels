@@ -3,15 +3,15 @@
     <div class="first-segment">
       <div class="images">
         <div class="road-sign">
-          <div class="image-1"></div>
+          <div class="image-1" />
           <p>You run the risk of getting lost.</p>
         </div>
         <div class="share">
-          <div class="image-2"></div>
+          <div class="image-2" />
           <p>Not a lot of options <br> for you to explore.</p>
         </div>
         <div class="report">
-          <div class="image-3"></div>
+          <div class="image-3" />
           <p>Missing out a lot of fun activities and attractions.</p>
         </div>
       </div>
@@ -24,9 +24,9 @@
 </template>
 
 <script>
-  export default {
-    name:'DetailS'
-  }
+export default {
+  name: 'DetailsPage'
+}
 </script>
 
 <style  scoped>

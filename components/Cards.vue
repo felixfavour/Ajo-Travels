@@ -1,33 +1,39 @@
 <template>
   <div class="card-container">
     <div class="first-card">
-      <div class="location"></div>
+      <div class="location" />
       <div class="text">
         <h2>Explore cities with ease</h2>
-        <p class="attraction">Find local attractions and hot spots easily without the stress of asking the locals.</p>
+        <p class="attraction">
+          Find local attractions and hot spots easily without the stress of asking the locals.
+        </p>
       </div>
     </div>
     <div class="second-card">
       <div class="text">
         <h2>Never get lost</h2>
-        <p class="direction">Get directions directly from the app and also book rides with local car hires directly.</p>
+        <p class="direction">
+          Get directions directly from the app and also book rides with local car hires directly.
+        </p>
       </div>
-      <div class="phone"></div>
+      <div class="phone" />
     </div>
     <div class="third-card">
-      <div class="world"></div>
+      <div class="world" />
       <div class="text">
         <h2>International suggestions</h2>
-        <p class="trip">Get trip ideas for other countries and cities for you to explore when in doubt.</p>
+        <p class="trip">
+          Get trip ideas for other countries and cities for you to explore when in doubt.
+        </p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  export default {
-    name:'CardS'
-  }
+export default {
+  name: 'CardsPage'
+}
 </script>
 
 <style scoped>

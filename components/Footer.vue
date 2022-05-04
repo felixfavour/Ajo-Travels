@@ -1,22 +1,28 @@
 <template>
   <div class="footer-container">
     <div class="content">
-      <div class="logo"></div>
+      <div class="logo" />
       <div class="info">
-        <div class="about">
-          <h2 class="header">About us</h2>
+        <div class=" click about">
+          <h2 class="header">
+            About us
+          </h2>
           <p>Company</p>
           <p>Security</p>
           <p>Address</p>
         </div>
-        <div class="contact">
-          <h2 class="header">Contact us</h2>
+        <div class="click contact">
+          <h2 class="header">
+            Contact us
+          </h2>
           <p>Email</p>
           <p>WhatsApp</p>
           <p>Slack</p>
         </div>
-        <div class="support">
-          <h2 class="header">Support</h2>
+        <div class="click support">
+          <h2 class="header">
+            Support
+          </h2>
           <p>Email</p>
         </div>
       </div>
@@ -28,9 +34,9 @@
 </template>
 
 <script>
-  export default {
-    name:'FooteR'
-  }
+export default {
+  name: 'FooterPage'
+}
 </script>
 
 <style scoped>
@@ -65,6 +71,9 @@
   line-height: 36px;
   font-family: 'Cereal Light';
   font-weight: 300;
+}
+.click{
+  cursor: pointer;
 }
 .header{
   font-size: 18px;

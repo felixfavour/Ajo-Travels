@@ -1,29 +1,56 @@
 <template>
   <div class="container">
     <div class="review-container">
-    <div class="content-container">
-      <div class="back-btn"></div>
-      <div class="content">
-        <div class="sweater"></div>
-        <div class="text">
-          <h2 class="name">Bernice Semiu</h2>
-          <p class="details">Ajo is very helpful and super easy to use, I had no issues finding local attractions and hot spots.</p>
+      <div class="content-container">
+        <div class="back-btn" @click="PreviousSlide(-1)" />
+        <div class="content">
+          <div class="sweater" />
+          <div v-if="clicked % 2 == 0" class="text">
+            <h2 class="name">
+              Bernice Semiu
+            </h2>
+            <p class="details">
+              Ajo is very helpful and super easy to use, I had no issues finding local attractions and hot spots.
+            </p>
+          </div>
+          <div v-if="clicked % 2 == 1" class="text">
+            <h2 class="name">
+              Chidera Amlabu
+            </h2>
+            <p class="details">
+              Ajo is goated!!
+            </p>
+          </div>
         </div>
+        <div class="forward-btn" @click="NextSlide(1)" />
+      </div>
     </div>
-    <div class="forward-btn"></div>
-    </div>
-  </div>
-  <div class="review">
-      <p class="see">See more reviews</p>
+    <div class="review">
+      <p class="see">
+        See more reviews
+      </p>
       <img src="~assets/images/forward-right.svg" alt="">
     </div>
   </div>
 </template>
 
 <script>
-  export default {
-    name:'RevieW'
+export default {
+  name: 'ReviewPage',
+  data () {
+    return {
+      clicked: 1
+    }
+  },
+  methods: {
+    PreviousSlide (n) {
+      this.clicked = this.clicked + n
+    },
+    NextSlide (n) {
+      this.clicked = this.clicked + n
+    }
   }
+}
 </script>
 
 <style scoped>
@@ -43,6 +70,7 @@
   width: 80px;
   height: 80px;
   margin-top: 60px;
+  cursor: pointer;
 }
 .content{
   display: flex;
@@ -66,6 +94,7 @@
   width: 80px;
   height: 80px;
   margin-top: 60px;
+  cursor: pointer;
 }
 .name{
   margin-top: 15px;

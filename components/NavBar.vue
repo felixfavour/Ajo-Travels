@@ -2,34 +2,44 @@
   <div class="background">
     <div class="nav-bar">
       <div class="logo">
-        <div class="white-logo"></div>
+        <div class="white-logo" />
         <img src="~assets/images/vertical-line.svg" alt="">
       </div>
       <div class="nav-links">
-        <a>Home</a>
+        <NuxtLink to="/">
+          Home
+        </NuxtLink>
         <a>Product</a>
         <a>Contact</a>
       </div>
       <div class="btns">
-        <button class="sign-up">Signup</button>
-        <button class="login">Login</button>
+        <button class="sign-up">
+          Signup
+        </button>
+        <button class="login">
+          Login
+        </button>
       </div>
     </div>
     <div class="guide">
-      <h1 class="name">Ajo</h1>
-      <h2 class="travel">The travel guide</h2>
+      <h1 class="name">
+        Ajo
+      </h1>
+      <h2 class="travel">
+        The travel guide
+      </h2>
     </div>
     <div class="images">
-      <div class="world"></div>
-      <div class="nav"></div>
+      <div class="world" />
+      <div class="nav" />
     </div>
   </div>
 </template>
 
 <script>
-  export default {
-    name:"NavbaR"
-  }
+export default {
+  name: 'NavbarPage'
+}
 </script>
 
 <style  scoped>
@@ -54,11 +64,6 @@
   width: 131px;
   height: 60.97px;
 }
-/* .vertical{
-  background-image: url(~assets/images/vertical-line.svg);
-  width: 30px;
-  border: 1px solid #FFFEE6;
-} */
 .nav-links{
   display: flex;
   column-gap: 3rem;
@@ -71,6 +76,9 @@
 .btns{
   display: flex;
   column-gap: 14px;
+}
+button{
+  cursor: pointer;
 }
 .sign-up{
   color: #9A9400;
@@ -120,7 +128,7 @@
   position: absolute;
   height: 286px;
   width: 359px;
-  left: 73px;
+  left: 40px;
   top: 171px;
 }
 .nav{
@@ -128,7 +136,72 @@
   position: absolute;
   width: 295px;
   height: 503px;
-  left: 955px;
+  left: 905px;
   top: 192px;
+}
+a{
+  text-decoration: none;
+  color: #FFFF;
+}
+a.nuxt-link-exact-active{
+  border-bottom: 1px solid #FCF300;
+}
+@media only screen and (max-width: 1400px) {
+.world{
+  background-image: url(~assets/images/world.svg);
+  position: absolute;
+  height: 286px;
+  width: 359px;
+  left: 40px;
+  top: 171px;
+}
+.nav{
+  background-image: url(~assets/images/nav.svg);
+  position: absolute;
+  width: 295px;
+  height: 503px;
+  left: 905px;
+  top: 192px;
+}
+}
+@media only screen and (min-width: 1500px) {
+  .world {
+    margin-left: 4.5rem;
+  }
+  .nav{
+  margin-left: 4.5rem;
+}
+}
+@media only screen and (min-width: 1600px) {
+  .world {
+    margin-left: 10rem;
+  }
+  .nav{
+  margin-left: 10.5rem;
+}
+}
+@media only screen and (min-width: 1800px) {
+  .world {
+    margin-left: 13.5rem;
+  }
+  .nav{
+  margin-left: 14rem;
+}
+}
+@media only screen and (min-width: 2000px) {
+  .world {
+    margin-left: 20.5rem;
+  }
+  .nav{
+  margin-left: 21rem;
+}
+}
+@media screen and (min-width: 2100px){
+  .world{
+    display: none;
+  }
+  .nav{
+    display: none;
+  }
 }
 </style>
