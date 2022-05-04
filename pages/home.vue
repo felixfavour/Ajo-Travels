@@ -11,30 +11,54 @@
       <div class="search">
         <TheSearchBar />
       </div>
-      <div class="scroll">
-        <div class="scroll-text" v-for="city in cities" :key="city.id">
-          <TheScrollBar :city="city" />
+      <div v-if="error">
+        <TheErrorCard />
+      </div>
+      <div class="scroll" v-if="!error">
+        <div
+          class="scroll-text"
+          v-for="(popCity, index) in cities"
+          :key="popCity.id"
+        >
+          <TheScrollBar :popCity="popCity" :index="index" />
+          <div class="line"></div>
         </div>
-        <div class="line"></div>
       </div>
     </section>
-    <section class="bottom">
+    <section class="bottom" v-if="!error">
       <div class="title">
         <h1>Popular</h1>
       </div>
       <div class="pop-cards">
-        <ThePopularCard />
+        <div v-for="(place, index) in popularPlaces" :key="place.id">
+          <ThePopularCard :place="place" :index="index" :id="place.id" />
+        </div>
       </div>
     </section>
   </div>
 </template>
 <script>
+import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
+
 export default {
   transition: "home",
   data() {
     return {
-      cities: this.$store.state.cities,
+      error: "",
     };
+  },
+  computed: {
+    ...mapState({
+      cities: (state) => state.cities,
+      popularPlaces: (state) => state.popularPlaces,
+    }),
+  },
+  methods: {
+    ...mapActions(["getPopularPlaces", "getTopCities"]),
+  },
+  async fetch({ store }) {
+    await store.dispatch("getTopCities");
+    await store.dispatch("getPopularPlaces");
   },
 };
 </script>
@@ -71,6 +95,15 @@ export default {
     }
     .middle {
       grid-area: mid;
+      ::-webkit-scrollbar {
+        height: 0px;
+        width: 0px;
+        background: white;
+      }
+      ::-webkit-scrollbar-thumb:horizontal {
+        background: #fff;
+        border-radius: 10px;
+      }
       .scroll {
         position: relative;
         margin-top: 40px;
@@ -78,17 +111,9 @@ export default {
         flex-direction: row;
         overflow: scroll;
         max-width: 428px;
-        .scroll-text::after {
-          content: "";
-          position: absolute;
-          height: 3px;
-          left: 0;
-          bottom: 0;
-          width: 10%;
-          background: yellow;
-        }
+
         .line {
-          height: 5.5px;
+          height: 2px;
           background: #fffee6;
           max-width: 428px;
         }
@@ -104,7 +129,9 @@ export default {
         }
       }
       .pop-cards {
-        width: 428px;
+        display: flex;
+        flex-direction: row;
+        width: 423px;
         overflow: scroll;
       }
     }

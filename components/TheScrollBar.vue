@@ -1,24 +1,33 @@
 <template lang="">
   <div class="scroll-container">
     <div class="scroll-text">
-      <p>{{ city.name }}</p>
-      <div :class="active ? 'line' : ''"></div>
+      <nuxt-link :class="{ yellow: showYellow }" to="/explore" target="_blank">
+        <p @mouseover="setYellow" @mouseleave="hideYellow">
+          {{ popCity.city }}
+        </p>
+      </nuxt-link>
+      <div class="line"></div>
     </div>
   </div>
 </template>
 <script>
 export default {
   props: {
-    city: Object,
+    popCity: Object,
+    index: Number,
   },
   data() {
     return {
-      cities: this.$store.state.cities,
-      active: true,
+      showYellow: false,
     };
   },
   methods: {
-    setActive() {},
+    setYellow() {
+      this.showYellow = !this.showYellow;
+    },
+    hideYellow() {
+      this.showYellow = !this.showYellow;
+    },
   },
 };
 </script>
@@ -27,26 +36,29 @@ export default {
   .scroll-container {
     overflow: scroll;
     padding: 0rem 0.5rem;
+    // width: 184px;
     .scroll-text {
       display: flex;
-      gap: 80px;
-      margin: 0rem 0.5rem;
-      p {
+      gap: 60px;
+      padding: 0rem 0.5rem;
+      width: max-content;
+
+      a {
         font-family: "Brown";
         color: #1d405a;
         font-size: 14px;
         font-weight: 400;
         cursor: pointer;
+        text-decoration: none;
       }
-    }
-    .line2 {
-      background-color: #fcf300;
-      height: 1.5px;
-    }
-
-    .line {
-      background-color: #fcf300;
-      height: 1.5px;
+      .yellow:after {
+        content: "";
+        position: absolute;
+        height: 2px;
+        width: 60px;
+        bottom: 0;
+        background: #fcf300;
+      }
     }
   }
 }
