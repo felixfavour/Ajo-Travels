@@ -5,11 +5,11 @@
         <img src="../assets/img/error.png" alt="" />
       </div>
       <div class="text">
-        <h1>Not Found</h1>
-        <p>Check the spelling and try again</p>
+        <h1>Oops! <br />Something went wrong.</h1>
+        <p>Pslease login and try again</p>
       </div>
       <nuxt-link to="/auth/login" class="btn">
-        <TheButton title="Back to homepage" value="yellowBgLg" />
+        <TheButton title="Login" value="yellowBgLg" />
       </nuxt-link>
     </main>
   </div>
@@ -36,6 +36,7 @@ main {
     }
     p {
       font-size: 14px;
+      margin-top: 30px;
     }
   }
   .btn {

@@ -81,7 +81,6 @@ export default {
         .post('https://ajo-app.herokuapp.com/api/auth/signup', data)
         .then((res) => {
           const userData = res.data
-          console.log(userData)
           this.$toasted.show('You have registered successfully', {
             theme: 'primary',
             position: 'top-center',
@@ -90,7 +89,6 @@ export default {
           })
           this.$router.push('/auth/login')
         })
-      console.log(this.$store.state.userDetails)
     },
   },
 }

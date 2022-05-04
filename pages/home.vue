@@ -15,7 +15,7 @@
         <div v-if="error">
           <TheErrorCard />
         </div>
-        <div class="scroll" v-if="!error">
+        <div class="scroll">
           <div
             class="scroll-text"
             v-for="(popCity, index) in cities"
@@ -26,7 +26,7 @@
           </div>
         </div>
       </section>
-      <section class="bottom" v-if="!error">
+      <section class="bottom">
         <div class="title">
           <h1>Popular</h1>
         </div>
@@ -38,7 +38,7 @@
       </section>
     </div>
     <div v-else>
-      <TheErrorCard />
+      <TheLoginErrorCard />
     </div>
   </div>
 </template>
@@ -93,7 +93,8 @@ export default {
       .welcome {
         font-family: 'Brown';
         margin-top: 34px;
-        padding: 0rem 1rem;
+        margin-bottom: 16px;
+        padding: 0rem 2rem;
         p {
           font-size: 25px;
           font-weight: 500;
@@ -119,13 +120,13 @@ export default {
       }
       .scroll {
         position: relative;
-        margin-top: 40px;
         display: flex;
         flex-direction: row;
         overflow: scroll;
         max-width: 428px;
-
+        padding-top: 65px;
         .line {
+          margin-top: 10px;
           height: 2px;
           background: #fffee6;
           max-width: 428px;
@@ -134,7 +135,7 @@ export default {
     }
     .bottom {
       grid-area: bottom;
-      margin: 2rem 0rem;
+      margin: 0rem 0rem;
       .title {
         padding: 0rem 1rem;
         h1 {

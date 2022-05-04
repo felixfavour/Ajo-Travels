@@ -65,7 +65,6 @@ export default {
           })
           this.$router.push('/home')
         })
-      console.log(this.$store.state.userDetails)
     },
   },
 }

@@ -1,11 +1,11 @@
 <template lang="">
   <div class="scroll-container">
     <div class="scroll-text">
-      <nuxt-link :class="{ yellow: showYellow }" to="/explore" target="_blank">
+      <a :class="{ yellow: showYellow }" href="/explore">
         <p @mouseover="setYellow" @mouseleave="hideYellow">
           {{ popCity.city }}
         </p>
-      </nuxt-link>
+      </a>
       <div class="line"></div>
     </div>
   </div>
@@ -19,17 +19,17 @@ export default {
   data() {
     return {
       showYellow: false,
-    };
+    }
   },
   methods: {
     setYellow() {
-      this.showYellow = !this.showYellow;
+      this.showYellow = !this.showYellow
     },
     hideYellow() {
-      this.showYellow = !this.showYellow;
+      this.showYellow = !this.showYellow
     },
   },
-};
+}
 </script>
 <style lang="scss" scoped>
 @media screen and (max-width: 428px) {
@@ -44,7 +44,7 @@ export default {
       width: max-content;
 
       a {
-        font-family: "Brown";
+        font-family: 'Brown';
         color: #1d405a;
         font-size: 14px;
         font-weight: 400;
@@ -52,7 +52,7 @@ export default {
         text-decoration: none;
       }
       .yellow:after {
-        content: "";
+        content: '';
         position: absolute;
         height: 2px;
         width: 60px;
