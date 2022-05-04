@@ -27,7 +27,7 @@
         </p>
       </div>
       <div class="button">
-        <a href="/home">
+        <a href="/auth/login">
           <TheButton title=" Get Started" value="whiteBgLg"
         /></a>
       </div>

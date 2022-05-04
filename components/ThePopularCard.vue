@@ -31,6 +31,7 @@ export default {
     }
   },
   methods: {
+<<<<<<< HEAD
     async getPlaceImage() {
       console.log(this.photoReference)
       await axios
@@ -51,6 +52,9 @@ export default {
           console.log(err.message)
         })
     },
+=======
+    async getPlaceImage() {},
+>>>>>>> emeka
   },
 }
 </script>
@@ -66,6 +70,7 @@ export default {
         height: 410px;
         transition: transform 500ms ease;
         opacity: 0.8;
+        padding: 0rem 0.8rem;
         .card-text {
           display: flex;
           flex-direction: column;

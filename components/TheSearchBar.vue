@@ -5,7 +5,7 @@
   </div>
 </template>
 <script>
-export default {};
+export default {}
 </script>
 <style lang="scss" scoped>
 .search {
@@ -28,11 +28,9 @@ export default {};
     border: 0px solid #c4c4c4;
   }
   svg {
-    position: relative;
-    width: 20.01px;
-    height: 20px;
-    text-align: center;
-    padding: 10px 0px;
+    position: absolute;
+    width: 20px;
+    margin-top: 10px;
     color: #041a7a;
   }
 }
