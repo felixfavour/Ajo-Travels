@@ -1,4 +1,4 @@
-<template lang="">
+<template>
   <div class="container">
     <section class="top">
       <TheNavbar />
@@ -133,6 +133,7 @@ export default {
         flex-direction: row;
         width: 423px;
         overflow: scroll;
+        gap: 20px;
       }
     }
   }

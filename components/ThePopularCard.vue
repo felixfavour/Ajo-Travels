@@ -1,4 +1,5 @@
-<template lang="">
+<template>
+<nuxt-link :to="'/explore/' + placeId">
   <div class="cards-container">
     <div class="scroll">
       <a @click="getPlaceImage">
@@ -14,12 +15,13 @@
             />
           </div>
         </div>
-        <div>
+        <!-- <div>
           {{ JSON.stringify(place.fullSearchResult.photos[0].photo_reference) }}
-        </div>
+        </div> -->
       </a>
     </div>
   </div>
+</nuxt-link>
 </template>
 <script>
 import axios from "axios";
@@ -29,6 +31,11 @@ export default {
     return {
       photoReference: this.place.fullSearchResult.photos[0].photo_reference,
     };
+  },
+  computed:{
+    placeId(){
+      return this.place.fullSearchResult.place_id
+    }
   },
   methods: {
     async getPlaceImage() {

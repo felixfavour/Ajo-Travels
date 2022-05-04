@@ -8,45 +8,48 @@
       <div class="place-description">
         <div class="place-name">
           <h2>
-            The National Museum
+            {{placeDetails.name}}
           </h2>
           <p>
-            African modern art gallery
+            {{placeDetails.business_status}}
           </p>
         </div>
         <div class="place-rating">
           <p>
-            4.7
+            {{placeDetails.rating}}
           </p>
           <img src="../../../assets/img/star.svg" alt="star" />
         </div>
       </div>
     </div>
     <div class="place-info-container">
-      <div class="place-info">
+      <!-- <div class="place-info">
         <p>
           The National Museum is a mountain in south-western Nigeria. It is located in the city of Abeokuta, Lagos State, and was normally used as a natural fortress during. It is located in the city of Abeokuta, Lagos State, and was normally used as a natural fortress during the periods of.
         </p>
-      </div>
+      </div> -->
       <div class="place-address">
-        <p class="address">
+        <a :href="placeDetails.url" target="_blank" class="address">
           <font-awesome-icon icon="location-dot" />
-          4 Admiralty way, Lekki, Lagos
-        </p>
-        <p class="contact">
+          {{placeDetails.vicinity}}
+        </a>
+        <a :href="'tel:' + placeDetails.international_phone_number" v-if="placeDetails.international_phone_number" class="contact">
           <font-awesome-icon icon="phone" />
-          0790 899 9991
-        </p>
+          {{placeDetails.international_phone_number}}
+        </a>
       </div>
     </div>
     <div class="reviews-container">
         <div class="reviews-header">
           <p>{{numberOfReviews}}</p>
-          <p v-if="seeAllReviews">See All</p>
+          <p v-if="seeAllReviews" @click="seeAllReviewsHandler">{{toggleSeeReview}}</p>
         </div>
-        <div class="review-card-container">
+        <div class="review-card-container" v-if="!seeReviews">
           <review-card v-for="review in reviews" :key="review._id" :review="review" />
         </div>
+    </div>
+    <div class="seeAll-review-container" v-if="seeReviews">
+      <review-full v-for="review in allReviews" :key="review._id" :review="review" />
     </div>
     <div class="recommended-places-container">
       <div class="section-header">
@@ -74,7 +77,7 @@ import TheNavbarVue from '~/components/TheNavbar.vue';
 import reviewCard from '~/components/TheReviewCard.vue';
 import placeCard from '~/components/PlaceCard.vue';
 import rideModal from '~/components/RideModal.vue';
-import { mapActions } from 'vuex';
+import ReviewFull from '~/components/ReviewFull.vue';
 
 export default {
   name: "booking",
@@ -82,20 +85,18 @@ export default {
     TheNavbarVue,
     reviewCard,
     placeCard,
-    rideModal
+    rideModal,
+    ReviewFull
   },
   data(){
     return{
-      showModal: false
+      showModal: false,
+      seeReviews: false,
     }
   },
-  // async mounted() {
-  //     console.log("I'm mounted");
-  // },
   methods:{
     revealModal(){
       this.showModal = true
-      this.getTopCities()
       if(this.showModal){
         this.disableScroll()
       }
@@ -117,29 +118,49 @@ export default {
     },
     enableScroll(){
       window.onscroll = () => {window.scrollTo()}
+    },
+    seeAllReviewsHandler(){
+      this.seeReviews = !this.seeReviews
     }
   },
   computed:{
     reviews(){
-      return this.$store.state.reviews
+        const reviewArray = this.$store.state.placeDetail.data.reviews
+        let newReviewArray = reviewArray.slice(0, 2)
+        return newReviewArray;
     },
     numberOfReviews(){
-      let reviewArray = this.$store.state.reviews
-      if(reviewArray.lenght > 1 || reviewArray.length == 0){
+      let reviewArray = this.$store.state.placeDetail.data.reviews
+      if(reviewArray.length > 1 || reviewArray.length == 0){
         return reviewArray.length + " reviews"
+      }else{
+        return reviewArray.length + " review"
       }
-      return reviewArray.length + " review"
     },
     seeAllReviews(){
-      let reviewArray = this.$store.state.reviews
+      let reviewArray = this.$store.state.placeDetail.data.reviews
       if(reviewArray.length > 3){
         return true
       }
       return false
+    },
+    placeDetails(){
+      return this.$store.state.placeDetail.data
+    },
+    toggleSeeReview(){
+      if(this.seeReviews){
+        return "See Less"
+      }
+      return "See All"
+    },
+    allReviews(){
+      return this.$store.state.placeDetail.data.reviews
     }
   },
-  async fetch({ store }){
+  async fetch({ store, params }){
     await store.dispatch("getReviews");
+    await store.dispatch("getImages");
+    await store.dispatch("getPlaceDetails", params.place)
   }
 };
 </script>
@@ -209,6 +230,10 @@ export default {
       }
     }
     .place-address{
+      padding-top: 17px;
+      display: flex;
+      flex-direction: column;
+      gap: 17px;
       svg{
           color: #B0AA00;
         }
@@ -219,6 +244,8 @@ export default {
         font-weight: 400;
         font-size: 12px;
         line-height: 16px;
+        text-decoration: none;
+        color: black;
       }
       .contact{
         display: flex;
@@ -228,6 +255,8 @@ export default {
         font-size: 12px;
         line-height: 16px;
         margin: 0;
+        text-decoration: none;
+        color: black;
       }
     }  
   }
@@ -248,6 +277,7 @@ export default {
             line-height: 17px;
             text-align: right;
             color: #051D8C;
+            cursor: pointer;
           }
         }  
       }

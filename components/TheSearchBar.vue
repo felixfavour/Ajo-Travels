@@ -1,7 +1,8 @@
-<template lang="">
+<template>
   <div class="search">
     <input class="input" type="search" />
-    <font-awesome-icon icon="magnifying-glass" />
+    <!-- <font-awesome-icon icon="magnifying-glass" /> -->
+    <img src="../assets/img/search-icon.svg" alt="Search">
   </div>
 </template>
 <script>

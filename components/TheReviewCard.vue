@@ -2,12 +2,12 @@
     <div class="review-card-component">
         <div class="review-card">
             <div class="review-img">
-                <img src="../assets/img/review-pic.png" alt="review">
+                <img :src="review.profile_photo_url" :alt="review.author_name">
             </div>
             <div class="review-content">
                 <div class="review-heading">
                     <div class="review-name">
-                        <h3>Temi Salau</h3>
+                        <h3>{{review.author_name}}</h3>
                     </div>
                     <div class="star-ratings">
                         <img v-for="star in starRatings" :key="star" src="../assets/img/star-ratings.svg" alt="star ratings">
@@ -15,7 +15,7 @@
                 </div>
                 <div class="review-description">
                     <p>
-                        {{review.content}}
+                        {{review.text}}
                     </p>
                 </div>
             </div>
@@ -65,11 +65,24 @@ export default {
         padding: 22px;
         box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
         border-radius: 32px;
+        .review-img{
+            img{
+                // width: 42.1px;
+                height: 45px;
+                border-radius: 6px;
+                object-fit: cover;
+            }
+        }
         .review-content{
+            width: 186px;
+            height: 166px;
             .review-heading{
                 @include flex-between;
                 padding-bottom: 9px;
                 border-bottom: 1px solid #E6E5E5;
+                .star-ratings{
+                    width: 100px;
+                }
                 .review-name{
                     h3{
                         margin: 0%;
@@ -77,6 +90,9 @@ export default {
                 }
             }
             .review-description{
+                overflow-y: auto;
+                overflow-x: hidden;
+                height: 100px;
                 p{
                     font-weight: 300;
                     font-size: 14px;
