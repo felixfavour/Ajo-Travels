@@ -19,7 +19,7 @@
         <nuxt-link to="/">Wishlists</nuxt-link>
         <nuxt-link to="/">Past Trips</nuxt-link>
         <nuxt-link to="/">Shared with me</nuxt-link>
-        <nuxt-link to="/">Logout</nuxt-link>
+        <div class="logout" @click="logout">Log out</div>
       </div>
     </div>
     <div class="nav">
@@ -59,6 +59,11 @@ export default {
     },
     closeDropDown() {
       this.showDropdown == !this.showDropdown
+    },
+    logout() {
+      this.$store.commit('setUserDetails', {})
+      this.$router.push('/')
+      console.log('User Logged Out')
     },
   },
 }
@@ -135,6 +140,11 @@ export default {
       padding-top: 0.8rem;
       border-bottom: 0.5px solid #c7c4c4;
       text-decoration: none;
+    }
+    .logout {
+      padding-top: 15px;
+      color: #041a7a;
+      cursor: pointer;
     }
   }
 }

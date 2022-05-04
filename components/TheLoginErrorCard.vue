@@ -6,7 +6,7 @@
       </div>
       <div class="text">
         <h1>Oops! <br />Something went wrong.</h1>
-        <p>Pslease login and try again</p>
+        <p>Please login and try again</p>
       </div>
       <nuxt-link to="/auth/login" class="btn">
         <TheButton title="Login" value="yellowBgLg" />

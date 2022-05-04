@@ -60,10 +60,22 @@ export default {
           this.$toasted.show('You have logged in successfully', {
             theme: 'primary',
             position: 'top-center',
-            duration: 5000,
+            duration: 500,
             type: 'success',
           })
           this.$router.push('/home')
+        })
+        .catch((err) => {
+          this.$toasted.show(
+            'Please enter the correct details and try again',
+            err,
+            {
+              theme: 'danger',
+              position: 'top-left',
+              duration: 200,
+              type: danger,
+            }
+          )
         })
     },
   },
