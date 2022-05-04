@@ -1,86 +1,100 @@
 <template>
   <div class="container">
-    <section class="top">
-      <TheNavbar />
-      <div class="welcome">
-        <p>Hi, Folashade</p>
-        <h1>Where would you <br />like to go?</h1>
-      </div>
-    </section>
-    <section class="middle">
-      <div class="search">
-        <TheSearchBar />
-      </div>
-      <div v-if="error">
-        <TheErrorCard />
-      </div>
-      <div class="scroll" v-if="!error">
-        <div
-          class="scroll-text"
-          v-for="(popCity, index) in cities"
-          :key="popCity.id"
-        >
-          <TheScrollBar :popCity="popCity" :index="index" />
-          <div class="line"></div>
+    <div v-if="isLoggedInUser">
+      <section class="top">
+        <TheNavbar />
+        <div class="welcome">
+          <p>Hi, {{ userName }}</p>
+          <h1>Where would you <br />like to go?</h1>
         </div>
-      </div>
-    </section>
-    <section class="bottom" v-if="!error">
-      <div class="title">
-        <h1>Popular</h1>
-      </div>
-      <div class="pop-cards">
-        <div v-for="(place, index) in popularPlaces" :key="place.id">
-          <ThePopularCard :place="place" :index="index" :id="place.id" />
+      </section>
+      <section class="middle">
+        <div class="search">
+          <TheSearchBar />
         </div>
-      </div>
-    </section>
+        <div v-if="error">
+          <TheErrorCard />
+        </div>
+        <div class="scroll">
+          <div
+            class="scroll-text"
+            v-for="(popCity, index) in cities"
+            :key="popCity.id"
+          >
+            <TheScrollBar :popCity="popCity" :index="index" />
+            <div class="line"></div>
+          </div>
+        </div>
+      </section>
+      <section class="bottom">
+        <div class="title">
+          <h1>Popular</h1>
+        </div>
+        <div class="pop-cards">
+          <div v-for="(place, index) in popularPlaces" :key="place.id">
+            <ThePopularCard :place="place" :index="index" :id="place.id" />
+          </div>
+        </div>
+      </section>
+    </div>
+    <div v-else>
+      <TheLoginErrorCard />
+    </div>
   </div>
 </template>
 <script>
-import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
+import { mapState, mapMutations, mapActions, mapGetters } from 'vuex'
 
 export default {
-  transition: "home",
+  transition: 'home',
   data() {
     return {
-      error: "",
-    };
+      error: '',
+      userName: this.$store.state.userDetails.firstname,
+    }
   },
   computed: {
     ...mapState({
       cities: (state) => state.cities,
       popularPlaces: (state) => state.popularPlaces,
     }),
+    isLoggedInUser() {
+      if (Object.keys(this.$store.state.userDetails).length !== 0) {
+        return true
+      } else {
+        return false
+      }
+    },
   },
   methods: {
-    ...mapActions(["getPopularPlaces", "getTopCities"]),
+    ...mapActions(['getPopularPlaces', 'getTopCities']),
   },
   async fetch({ store }) {
-    await store.dispatch("getTopCities");
-    await store.dispatch("getPopularPlaces");
+    await store.dispatch('getTopCities')
+    await store.dispatch('getPopularPlaces')
   },
-};
+}
 </script>
 <style lang="scss" scoped>
 @media screen and (max-width: 428px) {
   .container {
     width: 428px;
     height: 926px;
-    font-family: "Brown";
+    font-family: 'Brown';
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     grid-template-areas:
-      "top"
-      "mid"
-      "bottom";
+      'top'
+      'mid'
+      'bottom';
     .top {
       grid-area: top;
       .welcome {
-        font-family: "Brown";
+        font-family: 'Brown';
         margin-top: 34px;
-        padding: 0rem 1rem;
+        margin-bottom: 16px;
+        padding: 0rem 2rem;
         p {
           font-size: 25px;
           font-weight: 500;
@@ -106,13 +120,13 @@ export default {
       }
       .scroll {
         position: relative;
-        margin-top: 40px;
         display: flex;
         flex-direction: row;
         overflow: scroll;
         max-width: 428px;
-
+        padding-top: 65px;
         .line {
+          margin-top: 10px;
           height: 2px;
           background: #fffee6;
           max-width: 428px;
@@ -121,7 +135,7 @@ export default {
     }
     .bottom {
       grid-area: bottom;
-      margin: 2rem 0rem;
+      margin: 0rem 0rem;
       .title {
         padding: 0rem 1rem;
         h1 {

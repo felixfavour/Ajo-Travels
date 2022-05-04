@@ -1,4 +1,20 @@
+import VuexPersistence from 'vuex-persist'
 import axios from 'axios'
+
+function getPlugins() {
+  const plugins = []
+
+  if (process.browser) {
+    const vuexLocal = new VuexPersistence({
+      storage: window.localStorage,
+    })
+
+    plugins.push(vuexLocal.plugin)
+  }
+  return plugins
+}
+
+export const plugins = getPlugins()
 
 export const state = () => ({
   places: [],
@@ -7,18 +23,19 @@ export const state = () => ({
   reviews: [],
   user: [],
   placeDetail: [],
-  images: []
+  images: [],
+  userDetails: [],
 });
 
 export const mutations = {
   setPlaces(state, placesData) {
-    this.state.places = placesData;
+    this.state.places = placesData
   },
   setPopPlaces(state, popularPlacesData) {
-    this.state.popularPlaces = popularPlacesData;
+    this.state.popularPlaces = popularPlacesData
   },
   setCities(state, popularCities) {
-    this.state.cities = popularCities;
+    this.state.cities = popularCities
   },
   getImages(imageData) {
     this.state.images = imageData;
@@ -35,31 +52,34 @@ export const mutations = {
   addImages( state, images) {
     state.images = images
   },
+  setUserDetails(state, val) {
+    state.userDetails = val
+  },
 };
 
 export const actions = {
   async getPopularPlaces({ commit }) {
     await this.$axios
-      .get("/places/search/popular/")
+      .get('/places/search/popular/')
       .then((res) => {
-        var response = res.data.data;
-        commit("setPopPlaces", response);
+        var response = res.data.data
+        commit('setPopPlaces', response)
       })
       .catch((err) => {
-        console.log(err.message);
-      });
+        console.log(err.message)
+      })
   },
 
   async getTopCities({ commit }) {
     await this.$axios
-      .get("/top-cities")
+      .get('/top-cities')
       .then((res) => {
-        var response = res.data.data;
-        commit("setCities", response);
+        var response = res.data.data
+        commit('setCities', response)
       })
       .catch((err) => {
-        console.log(err.message);
-      });
+        console.log(err.message)
+      })
   },
   async getPlaceImage({ commit }) {
     await this.$axios
@@ -129,3 +149,4 @@ export const actions = {
 };
 
 export const getters = {};
+

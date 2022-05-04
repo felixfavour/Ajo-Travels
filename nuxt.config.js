@@ -24,7 +24,10 @@ export default {
   css: ['~assets/css/main.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+    { src: '~/plugins/vuex-persist', ssr: false },
+    { src: '~/plugins/vue-toasted', ssr: false },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -43,6 +46,8 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    // Nuxt Auth v5
+    // '@nuxtjs/auth-next',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
@@ -72,8 +77,9 @@ export default {
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
 
-    baseURL: "https://ajo-app.herokuapp.com/api/",
+    baseURL: 'https://ajo-app.herokuapp.com/api/',
   },
+  // Authentication Strategies
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
