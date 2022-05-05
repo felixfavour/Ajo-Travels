@@ -14,7 +14,7 @@
       <Footer />
     </div>
     <div class="logo">
-      <img src="../assets/img/ajo-logo.png" alt="">
+      <img src="../assets/img/ajo-logo.png" alt="" />
     </div>
     <div class="title">
       <!-- <img src="../assets/img/ajo-text.png" alt="" /> -->
@@ -34,40 +34,42 @@
 </template>
 
 <script>
-import TheButton from '~/components/TheButton.vue'
+import TheButton from "~/components/TheButton.vue";
 export default {
-  name: 'IndexPage',
+  name: "IndexPage",
   components: { TheButton },
-  transition: 'start'
-}
+  transition: "start",
+};
 </script>
 <style lang="scss" scoped>
-.main-container{
-  position: relative;
-}
-.container{
-  max-width: 1440px;
-  margin: 0 auto;
-}
-.phones{
-  background-image: url(~assets/images/phone.png);
-  position: absolute;
-  width: 580.49px;
-  height: 701.75px;
-  top: 443px;
-  left: 0;
-  right:0;
-  margin: auto;
-}
-.store{
-  background-image: url(~assets/images/stores.png);
-  position: absolute;
-  width: 535px;
-  height: 84px;
-  top: 1241px;
-  left: 0;
-  right: 0;
-  margin: auto;
+@media screen and (min-width: 429px) {
+  .main-container {
+    position: relative;
+  }
+  .container {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  .phones {
+    background-image: url(~assets/images/phone.png);
+    position: absolute;
+    width: 580.49px;
+    height: 701.75px;
+    top: 443px;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+  .store {
+    background-image: url(~assets/images/stores.png);
+    position: absolute;
+    width: 535px;
+    height: 84px;
+    top: 1241px;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
 }
 @media screen and (max-width: 428px) {
   main {
