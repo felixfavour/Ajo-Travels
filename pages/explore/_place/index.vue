@@ -2,7 +2,7 @@
   <div class="booking-container">
     <TheNavbar />
     <div class="img-container">
-      <img src="../../../assets/img/place.jpg" alt="place" />
+      <carousel :photos="allPlaceImgs" />
     </div>
     <div class="place-description-container">
       <div class="place-description">
@@ -58,16 +58,16 @@
         </h3>
       </div>
       <div class="recommended-places">
-        <place-card />
+        <place-card v-for="( place, index ) in similarPlaces" :key="index" :place="place" />
       </div>
     </div>
     <div class="book-btns">
       <button class="yellow-btn" @click="revealModal">
         Book ride
       </button>
-      <button class="transparent-btn">
+      <a :href="placeDetails.url" target="_blank" class="transparent-btn">
         Get Directions
-      </button>
+      </a>
     </div>
     <ride-modal v-if="showModal" @close-modal="onCloseModal" />
   </div>
@@ -78,6 +78,7 @@ import reviewCard from '~/components/TheReviewCard.vue';
 import placeCard from '~/components/PlaceCard.vue';
 import rideModal from '~/components/RideModal.vue';
 import ReviewFull from '~/components/ReviewFull.vue';
+import Carousel from '~/components/Carousel.vue';
 
 export default {
   name: "booking",
@@ -86,7 +87,8 @@ export default {
     reviewCard,
     placeCard,
     rideModal,
-    ReviewFull
+    ReviewFull,
+    Carousel
   },
   data(){
     return{
@@ -155,23 +157,30 @@ export default {
     },
     allReviews(){
       return this.$store.state.placeDetail.data.reviews
+    },
+    allPlaceImgs(){
+      return this.placeDetails.photos
+    },
+    similarPlaces(){
+      return this.$store.state.similarPlaces
     }
   },
   async fetch({ store, params }){
     await store.dispatch("getReviews");
-    await store.dispatch("getImages");
-    await store.dispatch("getPlaceDetails", params.place)
+    await store.dispatch("getPlaceDetails", params.place);
+    await store.dispatch("getSimilarPlaces");
   }
 };
 </script>
 <style lang="scss">
   .img-container{
+    position: relative;
     @include flex-center;
     width: 100%;
     height: 50vh;
       img{
         border-radius: 32px;
-        width: 90%;
+        width: 100%;
         height: 100%;
         object-fit: cover;
       }
@@ -310,9 +319,12 @@ export default {
         &:nth-child(1){
           @include yellow-btn;
         }
-        &:nth-child(2){
-          @include transparent-btn;
-        }
+      }
+      a{
+        width: 171px;
+        @include transparent-btn;
+        text-decoration: none;
+        text-align: center;
       }
     }
     // .ride-modal-container{

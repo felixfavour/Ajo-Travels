@@ -54,6 +54,7 @@ export default {
         padding-left: 30px;
         padding: 16px 0px 19px;
         border-bottom: 1px solid #CECECE;
+        align-items: flex-start;
         .review-left{
             .img-container{
                 height: 60px;

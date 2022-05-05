@@ -10,7 +10,7 @@
               {{ place.fullSearchResult.vicinity }}
             </p>
             <img
-              src="https://google-maps28.p.rapidapi.com/maps/api/place/photo?photo_reference=${this.photoReference}&maxwidth=1600&maxheight=1600"
+              :src="placeImg"
               alt=""
             />
           </div>
@@ -35,6 +35,9 @@ export default {
   computed:{
     placeId(){
       return this.place.fullSearchResult.place_id
+    },
+    placeImg(){
+      return `https://maps.googleapis.com/maps/api/place/photo?photo_reference=${this.photoReference}` + "&maxwidth=900&maxheight=600&key=AIzaSyASdmsJF14srd4fjjO8gehV3VEPtAX-plE"
     }
   },
   methods: {
