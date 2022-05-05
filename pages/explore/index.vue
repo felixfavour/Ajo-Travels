@@ -1,5 +1,5 @@
 <template lang="">
-  <div class="container">
+  <div class="main-container">
     <section class="top">
       <TheNavbar />
       <div class="welcome">
@@ -32,12 +32,12 @@
   </div>
 </template>
 <script>
-import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
+import { mapState, mapMutations, mapActions, mapGetters } from 'vuex'
 
 export default {
-  transition: "discover",
+  transition: 'discover',
   data() {
-    return {};
+    return {}
   },
   computed: {
     ...mapState({
@@ -46,24 +46,24 @@ export default {
     }),
   },
   methods: {
-    ...mapActions(["getPopularPlaces", "getTopCities"]),
+    ...mapActions(['getPopularPlaces', 'getTopCities']),
   },
   async fetch({ store }) {
-    await store.dispatch("getTopCities");
-    await store.dispatch("getPopularPlaces");
+    await store.dispatch('getTopCities')
+    await store.dispatch('getPopularPlaces')
   },
-};
+}
 </script>
 <style lang="scss" scoped>
 @media screen and (max-width: 428px) {
-  .container {
+  .main-container {
     max-width: 428px;
-    font-family: "Brown";
+    font-family: 'AirbnbCereal_W_md';
     .top {
       .welcome {
-        font-family: "Brown";
+        font-family: 'AirbnbCereal_W_lg';
         margin-top: 34px;
-        padding: 0rem 1rem;
+        padding: 0rem 2rem;
         h1 {
           font-size: 25px;
           font-weight: 900;
@@ -109,13 +109,18 @@ export default {
         margin-top: 1rem;
         overflow-y: scroll;
         overflow-x: hidden;
-        max-height: 650px;
+        max-height: 690px;
         padding: 0rem 3rem;
       }
     }
   }
+  .drop-container {
+    display: block;
+  }
 }
-
+element.style {
+  display: block;
+}
 .discover-enter-active,
 .discover-leave-active {
   transition: opacity 0.5s;

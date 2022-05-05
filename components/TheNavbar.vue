@@ -1,7 +1,7 @@
 <template lang="">
   <div>
-    <div v-show="showDropdown" class="drop-container">
-      <div class="top">
+    <div v-show="showDropdown" class="drop-container" style="display: block">
+      <div class="drop-header">
         <div class="title">
           <nuxt-link to="/home">
             <font-awesome-icon icon="dove" />
@@ -25,7 +25,7 @@
     <div class="nav">
       <font-awesome-icon icon="bars" @click="showDropdown = !showDropdown" />
       <div>
-        <nuxt-link to="/auth/login">
+        <nuxt-link to="/">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -68,8 +68,9 @@ export default {
   },
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .nav {
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -92,7 +93,6 @@ export default {
     opacity: 0;
   }
 }
-/// Dropdown
 .drop-container {
   position: absolute;
   top: 0;
@@ -100,13 +100,12 @@ export default {
   width: 432px;
   z-index: 2;
   padding-bottom: 2rem;
-  .top {
+  .drop-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 0rem 1rem;
-    margin-top: 46px;
     .title {
       a {
         display: flex;
