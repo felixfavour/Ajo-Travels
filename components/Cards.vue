@@ -32,7 +32,7 @@
 
 <script>
 export default {
-  name: 'CardsPage'
+  name: 'CardPage'
 }
 </script>
 
