@@ -1,4 +1,5 @@
 import VuexPersistence from 'vuex-persist'
+import axios from 'axios'
 
 function getPlugins() {
   const plugins = []
@@ -20,8 +21,12 @@ export const state = () => ({
   popularPlaces: [],
   cities: [],
   reviews: [],
+  user: [],
+  placeDetail: [],
   userDetails: [],
-})
+  images: [],
+  similarPlaces: []
+});
 
 export const mutations = {
   setPlaces(state, placesData) {
@@ -33,10 +38,22 @@ export const mutations = {
   setCities(state, popularCities) {
     this.state.cities = popularCities
   },
-  setUserDetails(state, val) {
-    state.userDetails = val
+  addReviews( state, reviews ) {
+    state.reviews = reviews
   },
-}
+  addUser( state, user ){
+    state.user = user
+  },
+  addPlaceDetails( state, placeDetail ){
+    state.placeDetail = placeDetail
+  },
+  addSimilarPlaces( state, similarPlaces ){
+    state.similarPlaces = similarPlaces
+  },
+  setUserDetails( state, userDetails ){
+    state.userDetails = userDetails
+  }
+};
 
 export const actions = {
   async getPopularPlaces({ commit }) {
@@ -62,4 +79,31 @@ export const actions = {
         console.log(err.message)
       })
   },
-}
+  async getReviews({ commit }){
+    try {
+      const reviews = await axios.get('https://ajo-app.herokuapp.com/api/app/reviews')
+      commit('addReviews', reviews.data)
+    } catch (error) {
+      console.log(error.message);
+    }
+  },
+  async getPlaceDetails({ commit }, placeId){
+    try {
+      const placeDetail = await this.$axios.get(`/places/${placeId}`)
+      commit('addPlaceDetails', placeDetail.data)
+    } catch (error) {
+      console.log(error.message);
+    }
+  },
+  async getSimilarPlaces({ commit }){
+    try {
+      const similarPlaces = await this.$axios.get(`/places/search/similar?placeType=point_of_interest`)
+      commit('addSimilarPlaces', similarPlaces.data.data )
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+};
+
+export const getters = {};
+

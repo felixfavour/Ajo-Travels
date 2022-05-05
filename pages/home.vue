@@ -1,4 +1,4 @@
-<template lang="">
+<template>
   <div class="container">
     <div v-if="isLoggedInUser">
       <section class="top">
@@ -147,6 +147,7 @@ export default {
         flex-direction: row;
         width: 423px;
         overflow: scroll;
+        gap: 20px;
       }
     }
   }

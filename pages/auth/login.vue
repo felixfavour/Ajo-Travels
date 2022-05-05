@@ -1,4 +1,4 @@
-<template lang="">
+<template>
   <div class="login">
     <section class="">
       <div class="form">
@@ -6,7 +6,7 @@
           <nuxt-link to="/">
             <font-awesome-icon icon="x" />
           </nuxt-link>
-          <h1>Sign Up to Ajo</h1>
+          <h1>Sign In to Ajo</h1>
         </div>
         <form @submit="login()" enctype="multipart/form-data" method="post">
           <div class="fields">
@@ -178,6 +178,8 @@ export default {
         display: flex;
         align-items: center;
         text-align: center;
+        justify-content: center;
+        align-items: center;
       }
       .back {
         display: flex;
