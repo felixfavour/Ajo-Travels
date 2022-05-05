@@ -1,4 +1,4 @@
-<template lang="">
+<template>
   <div>
     <main>
       <div class="img-container">
@@ -6,7 +6,8 @@
       </div>
       <div class="text">
         <h1>Not Found</h1>
-        <p>Check the spelling and try again</p>
+        <p v-if="message">{{ message }}</p>
+        <p v-else>Check the spelling and try again</p>
       </div>
       <nuxt-link to="/auth/login" class="btn">
         <TheButton title="Back to homepage" value="yellowBgLg" />
@@ -15,7 +16,13 @@
   </div>
 </template>
 <script>
-export default {}
+export default {
+  props:{
+    message:{
+      type: String
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
 main {
