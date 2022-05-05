@@ -1,22 +1,16 @@
 <template lang="">
   <div class="cards-container">
     <div class="scroll">
-      <a @click="getPlaceImage">
+      <a :href="`/explore/${place.fullSearchResult.place_id}`">
         <div class="card">
           <div class="card-text">
             <h1>{{ place.fullSearchResult.name }}</h1>
             <p>
               {{ place.fullSearchResult.vicinity }}
             </p>
-            <img
-              src="https://google-maps28.p.rapidapi.com/maps/api/place/photo?photo_reference=${this.photoReference}&maxwidth=1600&maxheight=1600"
-              alt=""
-            />
+            <img :src="getImageUrl" alt="" />
           </div>
         </div>
-        <!-- <div>
-          {{ JSON.stringify(place.fullSearchResult.photos[0].photo_reference) }}
-        </div> -->
       </a>
     </div>
   </div>
@@ -32,7 +26,6 @@ export default {
   },
   methods: {
     async getPlaceImage() {
-      console.log(this.photoReference)
       await axios
         .get(
           `https://google-maps28.p.rapidapi.com/maps/api/place/photo?photo_reference=${this.photoReference}&maxwidth=1600&maxheight=1600`,
@@ -44,12 +37,16 @@ export default {
             },
           }
         )
-        .then((res) => {
-          console.log(res)
-        })
+        .then((res) => {})
         .catch((err) => {
           console.log(err.message)
         })
+    },
+  },
+
+  computed: {
+    getImageUrl() {
+      return `https://maps.googleapis.com/maps/api/place/photo?photo_reference=${this.photoReference}&maxwidth=900&maxheight=600&key=AIzaSyASdmsJF14srd4fjjO8gehV3VEPtAX-plE`
     },
   },
 }

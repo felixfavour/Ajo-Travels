@@ -1,7 +1,11 @@
 <template lang="">
   <div>
     <div class="img-card">
-      <img src="../../../assets/img/nat-theather.jpeg" alt="" />
+      <img
+        @click="getRoute"
+        src="../../../assets/img/nat-theather.jpeg"
+        alt=""
+      />
     </div>
     <div class="title-cont">
       <div class="text">
@@ -48,7 +52,18 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      id: this.$route.params.place,
+    }
+  },
+  methods: {
+    getRoute() {
+      return console.log(this.id, 'Place data rendered')
+    },
+  },
+}
 </script>
 <style lang="scss" scoped>
 .img-card {
