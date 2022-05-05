@@ -3,7 +3,9 @@
     <section class="">
       <div class="form">
         <div class="title">
-          <font-awesome-icon icon="x" />
+          <nuxt-link to="/">
+            <font-awesome-icon icon="x" />
+          </nuxt-link>
           <h1>Sign Up to Ajo</h1>
         </div>
         <form @submit="register()" enctype="multipart/form-data" method="post">

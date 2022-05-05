@@ -3,7 +3,9 @@
     <section class="">
       <div class="form">
         <div class="title">
-          <font-awesome-icon icon="x" />
+          <nuxt-link to="/">
+            <font-awesome-icon icon="x" />
+          </nuxt-link>
           <h1>Sign In to Ajo</h1>
         </div>
         <form @submit="login()" enctype="multipart/form-data" method="post">
@@ -18,6 +20,9 @@
             </span>
           </div>
           <div>
+            <div v-show="isLoading" class="set-loading">
+              <TheWhiteLoader />
+            </div>
             <div class="btn">
               <button type="button" @click="login()">
                 <TheButton title="Sign In" value="yellowBgLg" />
@@ -43,6 +48,7 @@ export default {
       email: '',
       password: '',
       userInfo: this.$store.state.userDetails,
+      isLoading: false,
     }
   },
   methods: {
@@ -51,6 +57,7 @@ export default {
         email: this.email,
         password: this.password,
       }
+      this.isLoading === true
       axios
         .post('https://ajo-app.herokuapp.com/api/auth/signin', data)
         .then((res) => {
@@ -63,6 +70,7 @@ export default {
             duration: 500,
             type: 'success',
           })
+          this.isLoading === false
           this.$router.push('/home')
         })
         .catch((err) => {
@@ -188,6 +196,14 @@ export default {
     button {
       background: transparent;
       border: 0px;
+    }
+    .set-loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .btn {
+      margin: 2rem 0;
     }
   }
 }

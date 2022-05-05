@@ -23,6 +23,7 @@ export const state = () => ({
   reviews: [],
   user: [],
   placeDetail: [],
+  userDetails: [],
   images: [],
   similarPlaces: []
 });
@@ -48,6 +49,9 @@ export const mutations = {
   },
   addSimilarPlaces( state, similarPlaces ){
     state.similarPlaces = similarPlaces
+  },
+  setUserDetails( state, userDetails ){
+    state.userDetails = userDetails
   }
 };
 
