@@ -46,4 +46,18 @@ export default {
   background-color: transparent;
   color: #fcf300;
 }
+
+.yellowBgLg {
+  background-color: #fcf300;
+  color: #041a7a;
+  width: 364px;
+  height: 56px;
+}
+
+.yellowBgLg:hover {
+  transform: scale(1.02);
+  border: 1px solid #041a7a;
+  background-color: transparent;
+  color: #041a7a;
+}
 </style>

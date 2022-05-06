@@ -1,15 +1,19 @@
 <template lang="">
-  <div class="container">
+  <div class="main-container">
     <section class="top">
       <TheNavbar />
       <div class="welcome">
-        <h1>Discover Lekki, Lagos</h1>
+        <h1>Discover, {{ cityName }}</h1>
       </div>
     </section>
     <section class="middle">
       <div class="scroll">
-        <div class="scroll-text" v-for="city in cities" :key="city.id">
-          <TheScrollBar :city="city" />
+        <div
+          class="scroll-text"
+          v-for="(popCity, index) in cities"
+          :key="popCity.id"
+        >
+          <TheScrollBar :popCity="popCity" :index="index" />
           <div class="line"></div>
         </div>
       </div>
@@ -17,36 +21,60 @@
         <TheSearchBar />
       </div>
     </section>
-    <section class="explore-container">
+    <section class="explore-container" v-if="discoveredPlaces !== []">
       <div class="explore-cards">
-        <TheExploreCard />
-        <TheExploreCard />
-        <TheExploreCard />
-        <TheExploreCard />
+        <div v-for="(place, index) in discoveredPlaces" :key="index">
+          <TheExploreCard :place="place" />
+        </div>
       </div>
     </section>
+    <div v-else>
+      <TheErrorCard :message="'Oops... Something went wrong'" />
+    </div>
   </div>
 </template>
 <script>
+import { mapState, mapMutations, mapActions, mapGetters } from 'vuex'
+import TheErrorCard from '~/components/TheErrorCard.vue'
+
 export default {
-  transition: "discover",
+  transition: 'discover',
+  conponents: {
+    TheErrorCard,
+  },
   data() {
     return {
-      cities: this.$store.state.cities,
-    };
+      cityName: this.$route.params.explore,
+    }
   },
-};
+  computed: {
+    ...mapState({
+      cities: (state) => state.cities,
+      popularPlaces: (state) => state.popularPlaces,
+    }),
+    discoveredPlaces() {
+      return this.$store.state.cityDetails
+    },
+  },
+  methods: {
+    ...mapActions(['getPopularPlaces', 'getTopCities', 'discoverCity']),
+  },
+  async fetch({ store, params }) {
+    await store.dispatch('getTopCities')
+    await store.dispatch('discoverCity', params.explore.toLowerCase())
+  },
+}
 </script>
 <style lang="scss" scoped>
 @media screen and (max-width: 428px) {
-  .container {
+  .main-container {
     max-width: 428px;
-    font-family: "Brown";
+    font-family: 'AirbnbCereal_W_md';
     .top {
       .welcome {
-        font-family: "Brown";
+        font-family: 'AirbnbCereal_W_lg';
         margin-top: 34px;
-        padding: 0rem 1rem;
+        padding: 0rem 2rem;
         h1 {
           font-size: 25px;
           font-weight: 900;
@@ -92,13 +120,18 @@ export default {
         margin-top: 1rem;
         overflow-y: scroll;
         overflow-x: hidden;
-        max-height: 650px;
+        max-height: 690px;
         padding: 0rem 3rem;
       }
     }
   }
+  .drop-container {
+    display: block;
+  }
 }
-
+element.style {
+  display: block;
+}
 .discover-enter-active,
 .discover-leave-active {
   transition: opacity 0.5s;
