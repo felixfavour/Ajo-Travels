@@ -18,7 +18,7 @@
       <div class="drop-items">
         <nuxt-link to="/">Wishlists</nuxt-link>
         <nuxt-link to="/">Past Trips</nuxt-link>
-        <nuxt-link to="/">Shared with me</nuxt-link>
+        <nuxt-link to="/home">Home</nuxt-link>
         <div class="logout" @click="logout">Log out</div>
       </div>
     </div>
@@ -105,6 +105,7 @@ export default {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin-top: 34px;
     padding: 0rem 1rem;
     .title {
       a {

@@ -1,30 +1,30 @@
 <template>
-<nuxt-link :to="'/explore/' + place.fullSearchResult.place_id">
-  <div class="container">
-    <div class="explore" :style="`background-image: url('${backgroundImg}')`">
-      <div class="explore-text">
-        <h1>{{ place.fullSearchResult.name }}</h1>
-        <p>{{ place.fullSearchResult.vicinity }}</p>
+  <nuxt-link :to="'/explore/' + place.fullSearchResult.place_id">
+    <div class="container">
+      <div class="explore" :style="`background-image: url('${backgroundImg}')`">
+        <div class="explore-text">
+          <h1>{{ place.fullSearchResult.name }}</h1>
+          <p>{{ place.fullSearchResult.vicinity }}</p>
+        </div>
       </div>
     </div>
-  </div>
-</nuxt-link>
+  </nuxt-link>
 </template>
 <script>
 export default {
-  name:"explore-card",
-  props:{
-    place:{
+  name: 'explore-card',
+  props: {
+    place: {
       Required: true,
-      type: Object
-    }
+      type: Object,
+    },
   },
-  computed:{
-    backgroundImg(){
+  computed: {
+    backgroundImg() {
       return `https://maps.googleapis.com/maps/api/place/photo?photo_reference=${this.place.fullSearchResult.photos[0].photo_reference}&maxwidth=900&maxheight=600&key=AIzaSyASdmsJF14srd4fjjO8gehV3VEPtAX-plE`
-    }
-  }
-};
+    },
+  },
+}
 </script>
 <style lang="scss" scoped>
 .explore {
@@ -48,5 +48,8 @@ export default {
       line-height: 18.23px;
     }
   }
+}
+a {
+  text-decoration: none;
 }
 </style>

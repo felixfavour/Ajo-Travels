@@ -3,7 +3,7 @@
     <section class="top">
       <TheNavbar />
       <div class="welcome">
-        <h1>Discover Lekki, Lagos</h1>
+        <h1>Discover, {{ cityName }}</h1>
       </div>
     </section>
     <section class="middle">
@@ -23,30 +23,29 @@
     </section>
     <section class="explore-container">
       <div class="explore-cards" v-if="discoveredPlaces !== []">
-        <TheExploreCard
-          v-for="(place, index) in discoveredPlaces"
-          :key="index"
-          :place="place"
-        />
+        <div v-for="(place, index) in discoveredPlaces" :key="index">
+          <TheExploreCard :place="place" />
+        </div>
       </div>
-      <TheErrorCard
-        v-if="discoveredPlaces == []"
-        :message="'Oops... Something is wrong'"
-      />
+      <div v-else>
+        <TheErrorCard :message="'Oops... Something is wrong'" />
+      </div>
     </section>
   </div>
 </template>
 <script>
 import { mapState, mapMutations, mapActions, mapGetters } from 'vuex'
-import ErrorCard from '~/components/TheErrorCard.vue'
+import TheErrorCard from '~/components/TheErrorCard.vue'
 
 export default {
   transition: 'discover',
   conponents: {
-    ErrorCard,
+    TheErrorCard,
   },
   data() {
-    return {}
+    return {
+      cityName: this.$route.params.explore,
+    }
   },
   computed: {
     ...mapState({
