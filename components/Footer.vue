@@ -1,21 +1,21 @@
 <template>
   <div class="footer-container">
     <div class="content">
-      <div class="logo"></div>
+      <div class="logo" />
       <div class="info">
-        <div class="about">
+        <div class="click about">
           <h2 class="header">About us</h2>
           <p>Company</p>
           <p>Security</p>
           <p>Address</p>
         </div>
-        <div class="contact">
+        <div class="click contact">
           <h2 class="header">Contact us</h2>
           <p>Email</p>
           <p>WhatsApp</p>
           <p>Slack</p>
         </div>
-        <div class="support">
+        <div class="click support">
           <h2 class="header">Support</h2>
           <p>Email</p>
         </div>
@@ -29,7 +29,7 @@
 
 <script>
 export default {
-  name: 'FooteR',
+  name: 'FooterPage',
 }
 </script>
 
@@ -65,6 +65,9 @@ export default {
   line-height: 36px;
   font-family: 'Cereal Light';
   font-weight: 300;
+}
+.click {
+  cursor: pointer;
 }
 .header {
   font-size: 18px;

@@ -33,7 +33,6 @@
           Attractions and more.
         </p>
       </div>
-      <TheLoader />
       <div class="button" @click="getRoute">
         <a>
           <TheButton title=" Get Started" value="whiteBgLg" />
@@ -93,6 +92,9 @@ export default {
     width: 580.49px;
     height: 701.75px;
     top: 443px;
+    left: 0;
+    right: 0;
+    margin: auto;
     left: 430px;
   }
   .store {
@@ -101,9 +103,13 @@ export default {
     width: 535px;
     height: 84px;
     top: 1241px;
+    left: 0;
+    right: 0;
+    margin: auto;
     left: 464px;
   }
 }
+
 @media screen and (max-width: 428px) {
   .container {
     display: none;
