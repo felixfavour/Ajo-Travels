@@ -26,10 +26,11 @@
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
       </div>
+      <TheLoader />
       <div class="button">
-        <a href="/home">
-          <TheButton title=" Get Started" value="whiteBgLg"
-        /></a>
+        <a href="/auth/login">
+          <TheButton title=" Get Started" value="whiteBgLg" />
+        </a>
       </div>
     </div>
   </main>
@@ -38,14 +39,19 @@
 <script>
 import TheButton from '~/components/TheButton.vue'
 import Footer from '~/components/Footer.vue'
+import TheLoader from '~/components/TheLoader.vue'
+import TheWhiteLoader from '../components/TheWhiteLoader.vue'
 export default {
   name: 'IndexPage',
   transition: 'start',
-  components: { TheButton, Footer },
+  components: { TheButton, Footer, TheLoader, TheWhiteLoader },
 }
 </script>
 <style lang="scss" scoped>
 @media screen and (min-width: 428px) {
+  .mobile {
+    display: none;
+  }
   .container {
     max-width: 1440px;
     margin: 0 auto;

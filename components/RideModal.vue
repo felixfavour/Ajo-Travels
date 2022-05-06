@@ -34,13 +34,34 @@
 
 <script>
 export default {
-  name: 'rideModal',
-  data() {
-    return {
-      activateBolt: true,
-      activateUber: false,
-    }
-  },
+    name: "rideModal",
+    data(){
+        return{
+            activateBolt: true,
+            activateUber: false,
+        }
+    },
+    methods:{
+        closeModal(){
+            this.$emit('close-modal');
+            console.log("I'm being dragged");
+        },
+        initiateDrag(e){
+            let dragged = e.target;
+            for(let i = dragged.style.height; i > 0; i--){
+                console.log("This is my height" + i);
+            }
+            // dragged.style.height = 100 + "px";
+        },
+        activateBoltHandler(){
+            this.activateBolt = true
+            this.activateUber = false
+        },
+        activateUberHandler(){
+            this.activateUber = true
+            this.activateBolt = false
+        }
+    },
   methods: {
     closeModal() {
       this.$emit('close-modal')

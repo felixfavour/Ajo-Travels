@@ -1,4 +1,4 @@
-<template lang="">
+<template>
   <div>
     <main>
       <div class="img-container">
@@ -6,16 +6,23 @@
       </div>
       <div class="text">
         <h1>Not Found</h1>
-        <p>Check the spelling and try again</p>
+        <p v-if="message">{{ message }}</p>
+        <p v-else>Check the spelling and try again</p>
       </div>
-      <div class="btn">
+      <nuxt-link to="/auth/login" class="btn">
         <TheButton title="Back to homepage" value="yellowBgLg" />
-      </div>
+      </nuxt-link>
     </main>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  props:{
+    message:{
+      type: String
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
 main {
@@ -26,7 +33,7 @@ main {
 
   .img-container {
     padding: 1rem 0rem;
-    margin-top: 20px;
+    margin-top: 200px;
   }
   .text {
     color: #041a7a;
@@ -41,6 +48,9 @@ main {
   .btn {
     margin-top: 72px;
     margin-bottom: 130px;
+  }
+  a {
+    text-decoration: none;
   }
 }
 </style>

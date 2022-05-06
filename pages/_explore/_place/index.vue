@@ -2,51 +2,54 @@
   <div class="booking-container">
     <TheNavbar />
     <div class="img-container">
-      <img src="../assets/img/place.jpg" alt="place" />
+      <carousel :photos="allPlaceImgs" />
     </div>
     <div class="place-description-container">
       <div class="place-description">
         <div class="place-name">
           <h2>
-            The National Museum
+            {{placeDetails.name}}
           </h2>
           <p>
-            African modern art gallery
+            {{placeDetails.business_status}}
           </p>
         </div>
         <div class="place-rating">
           <p>
-            4.7
+            {{placeDetails.rating}}
           </p>
-          <img src="../assets/img/star.svg" alt="star" />
+          <img src="../../../assets/img/star.svg" alt="star" />
         </div>
       </div>
     </div>
     <div class="place-info-container">
-      <div class="place-info">
+      <!-- <div class="place-info">
         <p>
           The National Museum is a mountain in south-western Nigeria. It is located in the city of Abeokuta, Lagos State, and was normally used as a natural fortress during. It is located in the city of Abeokuta, Lagos State, and was normally used as a natural fortress during the periods of.
         </p>
-      </div>
+      </div> -->
       <div class="place-address">
-        <p class="address">
+        <a :href="placeDetails.url" target="_blank" class="address">
           <font-awesome-icon icon="location-dot" />
-          4 Admiralty way, Lekki, Lagos
-        </p>
-        <p class="contact">
+          {{placeDetails.vicinity}}
+        </a>
+        <a :href="'tel:' + placeDetails.international_phone_number" v-if="placeDetails.international_phone_number" class="contact">
           <font-awesome-icon icon="phone" />
-          0790 899 9991
-        </p>
+          {{placeDetails.international_phone_number}}
+        </a>
       </div>
     </div>
     <div class="reviews-container">
         <div class="reviews-header">
-          <p>20 Reviews</p>
-          <p>See All</p>
+          <p>{{numberOfReviews}}</p>
+          <p v-if="seeAllReviews" @click="seeAllReviewsHandler">{{toggleSeeReview}}</p>
         </div>
-        <div class="review-card-container">
-          <review-card />
+        <div class="review-card-container" v-if="!seeReviews">
+          <review-card v-for="review in reviews" :key="review._id" :review="review" />
         </div>
+    </div>
+    <div class="seeAll-review-container" v-if="seeReviews">
+      <review-full v-for="review in allReviews" :key="review._id" :review="review" />
     </div>
     <div class="recommended-places-container">
       <div class="section-header">
@@ -55,16 +58,16 @@
         </h3>
       </div>
       <div class="recommended-places">
-        <place-card />
+        <place-card v-for="( place, index ) in similarPlaces" :key="index" :place="place" />
       </div>
     </div>
     <div class="book-btns">
       <button class="yellow-btn" @click="revealModal">
         Book ride
       </button>
-      <button class="transparent-btn">
+      <a :href="placeDetails.url" target="_blank" class="transparent-btn">
         Get Directions
-      </button>
+      </a>
     </div>
     <ride-modal v-if="showModal" @close-modal="onCloseModal" />
   </div>
@@ -74,6 +77,8 @@ import TheNavbarVue from '~/components/TheNavbar.vue';
 import reviewCard from '~/components/TheReviewCard.vue';
 import placeCard from '~/components/PlaceCard.vue';
 import rideModal from '~/components/RideModal.vue';
+import ReviewFull from '~/components/ReviewFull.vue';
+import Carousel from '~/components/Carousel.vue';
 
 export default {
   name: "booking",
@@ -81,18 +86,20 @@ export default {
     TheNavbarVue,
     reviewCard,
     placeCard,
-    rideModal
+    rideModal,
+    ReviewFull,
+    Carousel
   },
   data(){
     return{
-      showModal: false
+      showModal: false,
+      seeReviews: false,
     }
   },
   methods:{
     revealModal(){
       this.showModal = true
-
-      if(this.showModalHandler){
+      if(this.showModal){
         this.disableScroll()
       }
       else{
@@ -113,23 +120,67 @@ export default {
     },
     enableScroll(){
       window.onscroll = () => {window.scrollTo()}
+    },
+    seeAllReviewsHandler(){
+      this.seeReviews = !this.seeReviews
     }
   },
   computed:{
-    showModalHandler(){
-      return this.showModal
+    reviews(){
+        const reviewArray = this.$store.state.placeDetail.data.reviews
+        let newReviewArray = reviewArray.slice(0, 2)
+        return newReviewArray;
+    },
+    numberOfReviews(){
+      let reviewArray = this.$store.state.placeDetail.data.reviews
+      if(reviewArray.length > 1 || reviewArray.length == 0){
+        return reviewArray.length + " reviews"
+      }else{
+        return reviewArray.length + " review"
+      }
+    },
+    seeAllReviews(){
+      let reviewArray = this.$store.state.placeDetail.data.reviews
+      if(reviewArray.length > 3){
+        return true
+      }
+      return false
+    },
+    placeDetails(){
+      return this.$store.state.placeDetail.data
+    },
+    toggleSeeReview(){
+      if(this.seeReviews){
+        return "See Less"
+      }
+      return "See All"
+    },
+    allReviews(){
+      return this.$store.state.placeDetail.data.reviews
+    },
+    allPlaceImgs(){
+      return this.placeDetails.photos
+    },
+    similarPlaces(){
+      return this.$store.state.similarPlaces
     }
+  },
+  async fetch({ store, params }){
+    await store.dispatch("getReviews");
+    await store.dispatch("getPlaceDetails", params.place);
+    await store.dispatch("getSimilarPlaces");
   }
 };
 </script>
 <style lang="scss">
   .img-container{
+    position: relative;
     @include flex-center;
     width: 100%;
     height: 50vh;
       img{
         border-radius: 32px;
-        width: 90%;
+        width: 100%;
         height: 100%;
         object-fit: cover;
       }
@@ -188,6 +239,10 @@ export default {
       }
     }
     .place-address{
+      padding-top: 17px;
+      display: flex;
+      flex-direction: column;
+      gap: 17px;
       svg{
           color: #B0AA00;
         }
@@ -198,6 +253,8 @@ export default {
         font-weight: 400;
         font-size: 12px;
         line-height: 16px;
+        text-decoration: none;
+        color: black;
       }
       .contact{
         display: flex;
@@ -207,11 +264,14 @@ export default {
         font-size: 12px;
         line-height: 16px;
         margin: 0;
+        text-decoration: none;
+        color: black;
       }
     }  
   }
   .reviews-container{
       padding: 23px 32px;
+      overflow-x: auto;
       .reviews-header{
         @include flex-between;
         p{
@@ -226,8 +286,16 @@ export default {
             line-height: 17px;
             text-align: right;
             color: #051D8C;
+            cursor: pointer;
           }
         }  
+      }
+      .review-card-container{
+        width: 100%;
+        display: inline-flex;
+        gap: 60px;
+        overflow-x: auto;
+        overflow-y: hidden;
       }
     }
     .recommended-places-container{
@@ -251,14 +319,17 @@ export default {
         &:nth-child(1){
           @include yellow-btn;
         }
-        &:nth-child(2){
-          @include transparent-btn;
-        }
+      }
+      a{
+        width: 171px;
+        @include transparent-btn;
+        text-decoration: none;
+        text-align: center;
       }
     }
-    // .ride-modal-container{
-    //   position: absolute;
-    //   left: 0;
-    //   bottom: 0;
-    // }
+    .ride-modal-container{
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
 </style>

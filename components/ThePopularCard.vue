@@ -1,58 +1,59 @@
-<template lang="">
+<template>
+<nuxt-link :to="'/explore/' + placeId">
   <div class="cards-container">
     <div class="scroll">
-      <a @click="getPlaceImage">
+      <a :href="`/explore/${place.fullSearchResult.place_id}`">
         <div class="card">
           <div class="card-text">
             <h1>{{ place.fullSearchResult.name }}</h1>
             <p>
               {{ place.fullSearchResult.vicinity }}
             </p>
-            <img
-              src="https://lh3.googleusercontent.com/places/AAcXr8oitbZRPPGdK0-3GQp2lnrNeGclN1wh34J_vrmPDlGWFdxc2zssvzhCE16I8eupGiccuYmpl4_VGvkQXy6jOzqj76feJ20VAoQ=s1600-w1600-h1600"
-              alt=""
-            />
+            <img :src="getImageUrl" alt="" />
           </div>
-        </div>
-        <div>
-          {{ JSON.stringify(place.fullSearchResult.photos[0].photo_reference) }}
         </div>
       </a>
     </div>
   </div>
+</nuxt-link>
 </template>
 <script>
-import axios from "axios";
+import axios from 'axios'
 export default {
-  props: ["place", "name", "id", "index"],
+  props: ['place', 'name', 'id', 'index'],
   data: function () {
     return {
       photoReference: this.place.fullSearchResult.photos[0].photo_reference,
-    };
+    }
+  },
+  computed:{
+    placeId(){
+      return this.place.fullSearchResult.place_id
+    },
+    getImageUrl() {
+      return `https://maps.googleapis.com/maps/api/place/photo?photo_reference=${this.photoReference}&maxwidth=900&maxheight=600&key=AIzaSyASdmsJF14srd4fjjO8gehV3VEPtAX-plE`
+    },
   },
   methods: {
     async getPlaceImage() {
-      console.log(this.photoReference);
-      // await axios
-      //   .get(
-      //     `https://google-maps28.p.rapidapi.com/maps/api/place/photo?photo_reference=${this.photoReference}&maxwidth=1600&maxheight=1600`,
-      //     {
-      //       headers: {
-      //         "X-RapidAPI-Host": "google-maps28.p.rapidapi.com",
-      //         "X-RapidAPI-Key":
-      //           "ee0219cfdfmshd0edb4d1f8464abp124dd2jsnb5dc821c8d60",
-      //       },
-      //     }
-      //   )
-      //   .then((res) => {
-      //     console.log(res);
-      //   })
-      //   .catch((err) => {
-      //     console.log(err.message);
-      //   });
+      await axios
+        .get(
+          `https://google-maps28.p.rapidapi.com/maps/api/place/photo?photo_reference=${this.photoReference}&maxwidth=1600&maxheight=1600`,
+          {
+            headers: {
+              'X-RapidAPI-Host': 'google-maps28.p.rapidapi.com',
+              'X-RapidAPI-Key':
+                'ee0219cfdfmshd0edb4d1f8464abp124dd2jsnb5dc821c8d60',
+            },
+          }
+        )
+        .then((res) => {})
+        .catch((err) => {
+          console.log(err.message)
+        })
     },
   },
-};
+}
 </script>
 <style lang="scss" scoped>
 .cards-container {
@@ -66,6 +67,7 @@ export default {
         height: 410px;
         transition: transform 500ms ease;
         opacity: 0.8;
+        padding: 0rem 0.8rem;
         .card-text {
           display: flex;
           flex-direction: column;
@@ -79,7 +81,7 @@ export default {
           }
           p {
             width: 276px;
-            font-family: "Brown";
+            font-family: 'Brown';
             font-size: 14px;
             font-weight: 300;
             padding: 0rem 0.8rem;
