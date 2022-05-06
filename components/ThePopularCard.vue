@@ -1,5 +1,4 @@
 <template>
-<nuxt-link :to="'/explore/' + placeId">
   <div class="cards-container">
     <div class="scroll">
       <a :href="`/explore/${place.fullSearchResult.place_id}`">
@@ -15,7 +14,6 @@
       </a>
     </div>
   </div>
-</nuxt-link>
 </template>
 <script>
 import axios from 'axios'
@@ -26,10 +24,7 @@ export default {
       photoReference: this.place.fullSearchResult.photos[0].photo_reference,
     }
   },
-  computed:{
-    placeId(){
-      return this.place.fullSearchResult.place_id
-    },
+  computed: {
     getImageUrl() {
       return `https://maps.googleapis.com/maps/api/place/photo?photo_reference=${this.photoReference}&maxwidth=900&maxheight=600&key=AIzaSyASdmsJF14srd4fjjO8gehV3VEPtAX-plE`
     },
@@ -72,6 +67,10 @@ export default {
           display: flex;
           flex-direction: column;
           color: #fff;
+
+          a {
+            text-decoration-style: none;
+          }
           h1 {
             font-size: 25px;
             margin: 0px;

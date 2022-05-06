@@ -1,9 +1,9 @@
 <template>
-  <div class="container">
+  <div class="main-container">
     <section class="top">
       <TheNavbar />
       <div class="welcome">
-        <h1>Discover Lekki, Lagos</h1>
+        <h1>Discover, {{ cityName }}</h1>
       </div>
     </section>
     <section class="middle">
@@ -30,17 +30,18 @@
   </div>
 </template>
 <script>
-import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
-import ErrorCard from "~/components/TheErrorCard.vue"
+import { mapState, mapMutations, mapActions, mapGetters } from 'vuex'
+import TheErrorCard from '~/components/TheErrorCard.vue'
 
 export default {
-  transition: "discover",
-  conponents:{
-    ErrorCard
+  transition: 'discover',
+  conponents: {
+    TheErrorCard,
   },
   data() {
     return {
-      discoveredPlaces: this.$store.state.cityDetails.data
+      discoveredPlaces: this.$store.state.cityDetails.data,
+      cityName: this.$route.params.explore,
     };
   },
   computed: {
@@ -53,24 +54,24 @@ export default {
     // }
   },
   methods: {
-    ...mapActions(["getPopularPlaces", "getTopCities"]),
+    ...mapActions(['getPopularPlaces', 'getTopCities', 'discoverCity']),
   },
   async fetch({ store, params }) {
-    await store.dispatch("getTopCities");
-    await store.dispatch("discoverCity", params.explore.toLowerCase());
+    await store.dispatch('getTopCities')
+    await store.dispatch('discoverCity', params.explore.toLowerCase())
   },
-};
+}
 </script>
 <style lang="scss" scoped>
 @media screen and (max-width: 428px) {
-  .container {
+  .main-container {
     max-width: 428px;
-    font-family: "Brown";
+    font-family: 'AirbnbCereal_W_md';
     .top {
       .welcome {
-        font-family: "Brown";
+        font-family: 'AirbnbCereal_W_lg';
         margin-top: 34px;
-        padding: 0rem 1rem;
+        padding: 0rem 2rem;
         h1 {
           font-size: 25px;
           font-weight: 900;
@@ -116,13 +117,18 @@ export default {
         margin-top: 1rem;
         overflow-y: scroll;
         overflow-x: hidden;
-        max-height: 650px;
+        max-height: 690px;
         padding: 0rem 3rem;
       }
     }
   }
+  .drop-container {
+    display: block;
+  }
 }
-
+element.style {
+  display: block;
+}
 .discover-enter-active,
 .discover-leave-active {
   transition: opacity 0.5s;

@@ -5,15 +5,15 @@
 </template>
 <script>
 export default {
-  name: "TheButton",
+  name: 'TheButton',
   props: {
     title: String,
-    value: String,
+    value: String
   },
-  data() {
-    return {};
-  },
-};
+  data () {
+    return {}
+  }
+}
 </script>
 <style lang="scss" scoped>
 .button {

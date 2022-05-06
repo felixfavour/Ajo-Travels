@@ -1,12 +1,11 @@
-<template>
+<template lang="">
   <div class="card-container">
     <div class="first-card">
-      <div class="location"></div>
+      <div class="location" />
       <div class="text">
         <h2>Explore cities with ease</h2>
-        <p>
-          Find local attractions and hot <br />
-          spots easily without the stress of <br />
+        <p class="attraction">
+          Find local attractions and hot spots easily without the stress of
           asking the locals.
         </p>
       </div>
@@ -14,24 +13,20 @@
     <div class="second-card">
       <div class="text">
         <h2>Never get lost</h2>
-        <p>
-          Get directions directly <br />
-          from the app and also <br />
-          book rides with local car <br />
-          hires directly.
+        <p class="direction">
+          Get directions directly from the app and also book rides with local
+          car hires directly.
         </p>
       </div>
-      <div class="phone"></div>
+      <div class="phone" />
     </div>
     <div class="third-card">
-      <div class="world"></div>
+      <div class="world" />
       <div class="text">
         <h2>International suggestions</h2>
-        <p>
-          Get trip ideas for other <br />
-          countries and cities for <br />
-          you to explore when in <br />
-          doubt.
+        <p class="trip">
+          Get trip ideas for other countries and cities for you to explore when
+          in doubt.
         </p>
       </div>
     </div>
@@ -40,7 +35,7 @@
 
 <script>
 export default {
-  name: 'CardS',
+  name: 'CardPage',
 }
 </script>
 
@@ -90,6 +85,15 @@ export default {
 .text {
   display: flex;
   flex-direction: column;
+}
+.attraction {
+  width: 383px;
+}
+.direction {
+  width: 296px;
+}
+.trip {
+  width: 296px;
 }
 h2 {
   font-size: 35px;
