@@ -25,7 +25,8 @@ export const state = () => ({
   placeDetail: [],
   userDetails: [],
   images: [],
-  similarPlaces: []
+  similarPlaces: [],
+  cityDetails: []
 });
 
 export const mutations = {
@@ -52,6 +53,9 @@ export const mutations = {
   },
   setUserDetails( state, userDetails ){
     state.userDetails = userDetails
+  },
+  addCityDetails( state, cityDetails ){
+    state.cityDetails = cityDetails
   }
 };
 
@@ -99,6 +103,14 @@ export const actions = {
     try {
       const similarPlaces = await this.$axios.get(`/places/search/similar?placeType=point_of_interest`)
       commit('addSimilarPlaces', similarPlaces.data.data )
+    } catch (error) {
+      console.log(error.message);
+    }
+  },
+  async discoverCity({ commit }, city){
+    try {
+      const discoveries = await this.$axios.get(`places/discover/${city}?placeType=point_of_interest`)
+      commit('addCityDetails', discoveries.data.data )
     } catch (error) {
       console.log(error.message);
     }

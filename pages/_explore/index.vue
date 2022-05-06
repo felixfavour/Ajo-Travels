@@ -1,4 +1,4 @@
-<template lang="">
+<template>
   <div class="container">
     <section class="top">
       <TheNavbar />
@@ -22,20 +22,22 @@
       </div>
     </section>
     <section class="explore-container">
-      <div class="explore-cards">
-        <TheExploreCard />
-        <TheExploreCard />
-        <TheExploreCard />
-        <TheExploreCard />
+      <div class="explore-cards" v-if="discoveredPlaces !==[]">
+        <TheExploreCard v-for="(place, index) in discoveredPlaces" :key="index" :place="place" />
       </div>
+      <TheErrorCard v-if="discoveredPlaces == []" :message="'Oops... Something is wrong'" />
     </section>
   </div>
 </template>
 <script>
 import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
+import ErrorCard from "~/components/TheErrorCard.vue"
 
 export default {
   transition: "discover",
+  conponents:{
+    ErrorCard
+  },
   data() {
     return {};
   },
@@ -44,13 +46,16 @@ export default {
       cities: (state) => state.cities,
       popularPlaces: (state) => state.popularPlaces,
     }),
+    discoveredPlaces(){
+      return this.$store.state.cityDetails
+    }
   },
   methods: {
     ...mapActions(["getPopularPlaces", "getTopCities"]),
   },
-  async fetch({ store }) {
+  async fetch({ store, params }) {
     await store.dispatch("getTopCities");
-    await store.dispatch("getPopularPlaces");
+    await store.dispatch("discoverCity", params.explore.toLowerCase());
   },
 };
 </script>
