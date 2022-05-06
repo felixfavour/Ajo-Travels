@@ -11,9 +11,6 @@
   </nuxt-link>
 </template>
 <script>
-<<<<<<< HEAD
-export default {}
-=======
 export default {
   name: 'explore-card',
   props: {
@@ -28,7 +25,6 @@ export default {
     },
   },
 }
->>>>>>> develop
 </script>
 <style lang="scss" scoped>
 .explore {

@@ -1,18 +1,5 @@
 <template>
   <main>
-    <div class="main-container">
-      <NavBar />
-      <div class="container">
-        <div class="background-images">
-          <div class="phones" />
-          <div class="store" />
-        </div>
-        <Details />
-        <Cards />
-        <Review />
-      </div>
-      <Footer />
-    </div>
     <div class="container">
       <NavBar />
       <div class="background-images">
@@ -92,7 +79,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 @media screen and (min-width: 429px) {
-.main-container {
   .mobile {
     display: none;
   }
