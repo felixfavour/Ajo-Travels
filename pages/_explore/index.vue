@@ -22,10 +22,10 @@
       </div>
     </section>
     <section class="explore-container">
-      <div class="explore-cards" v-if="discoveredPlaces !==[]">
+      <div class="explore-cards" v-if="discoveredPlaces">
         <TheExploreCard v-for="(place, index) in discoveredPlaces" :key="index" :place="place" />
       </div>
-      <TheErrorCard v-if="discoveredPlaces == []" :message="'Oops... Something is wrong'" />
+      <TheErrorCard v-else :message="'Oops... Something is wrong'" />
     </section>
   </div>
 </template>
@@ -39,16 +39,18 @@ export default {
     ErrorCard
   },
   data() {
-    return {};
+    return {
+      discoveredPlaces: this.$store.state.cityDetails.data
+    };
   },
   computed: {
     ...mapState({
       cities: (state) => state.cities,
       popularPlaces: (state) => state.popularPlaces,
     }),
-    discoveredPlaces(){
-      return this.$store.state.cityDetails
-    }
+    // discoveredPlaces(){
+    //   return this.$store.state.cityDetails
+    // }
   },
   methods: {
     ...mapActions(["getPopularPlaces", "getTopCities"]),

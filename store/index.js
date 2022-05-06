@@ -55,7 +55,8 @@ export const mutations = {
     state.userDetails = userDetails
   },
   addCityDetails( state, cityDetails ){
-    state.cityDetails = cityDetails
+    let cityDetailsData = { data: cityDetails }
+    state.cityDetails = cityDetailsData
   }
 };
 
@@ -111,6 +112,7 @@ export const actions = {
     try {
       const discoveries = await this.$axios.get(`places/discover/${city}?placeType=point_of_interest`)
       commit('addCityDetails', discoveries.data.data )
+      console.log(discoveries.data)
     } catch (error) {
       console.log(error.message);
     }

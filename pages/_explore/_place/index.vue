@@ -327,9 +327,9 @@ export default {
         text-align: center;
       }
     }
-    // .ride-modal-container{
-    //   position: absolute;
-    //   left: 0;
-    //   bottom: 0;
-    // }
+    .ride-modal-container{
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
 </style>
