@@ -55,6 +55,7 @@ export const mutations = {
     state.userDetails = userDetails
   },
   addCityDetails(state, cityDetails) {
+    state.cityDetails = []
     state.cityDetails = cityDetails
   },
 }

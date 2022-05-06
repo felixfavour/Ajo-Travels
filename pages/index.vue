@@ -60,7 +60,6 @@ export default {
   methods: {
     getRoute() {
       if (this.$store.state.userDetails.firstname !== undefined) {
-        console.log(this.$store.state.userDetails.firstname)
         this.$router.push('/home')
       } else {
         this.$router.push('/auth/login')
