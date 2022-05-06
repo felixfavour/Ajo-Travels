@@ -21,16 +21,16 @@
         <TheSearchBar />
       </div>
     </section>
-    <section class="explore-container">
-      <div class="explore-cards" v-if="discoveredPlaces !== []">
+    <section class="explore-container" v-if="discoveredPlaces !== []">
+      <div class="explore-cards">
         <div v-for="(place, index) in discoveredPlaces" :key="index">
           <TheExploreCard :place="place" />
         </div>
       </div>
-      <div v-else>
-        <TheErrorCard :message="'Oops... Something is wrong'" />
-      </div>
     </section>
+    <div v-else>
+      <TheErrorCard :message="'Oops... Something went wrong'" />
+    </div>
   </div>
 </template>
 <script>
@@ -57,7 +57,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['getPopularPlaces', 'getTopCities']),
+    ...mapActions(['getPopularPlaces', 'getTopCities', 'discoverCity']),
   },
   async fetch({ store, params }) {
     await store.dispatch('getTopCities')
