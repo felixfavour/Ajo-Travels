@@ -7,14 +7,35 @@ export default {
   //generate dynamic links
   
   generate:{
-    async routes() {
-          const routeArray = await axios.get('https://ajo-app.herokuapp.com/api/top-cities') || [];
-          return routeArray?.data?.data?.map((city) => {
-            console.log(city.city);
-            return '/' + city.city ;
-          })
-        },
-    // routes: dynamicRoutes
+    // async routes() {
+    //       let cityDistArray = []
+    //       const routeArray = await axios.get('https://ajo-app.herokuapp.com/api/top-cities') || [];
+    //       return routeArray?.data?.data?.map((city) => {
+    //         console.log(city.city);
+    //         cityDistArray.push('/' + city.city)
+    //       })
+          
+    //     },
+    async routes(){
+      const routeArrayRes = await axios.get('https://ajo-app.herokuapp.com/api/top-cities') || [];
+
+      const routeArray =  routeArrayRes?.data?.data?.map((city) => {
+        return{
+          route: "/" + city.city
+        }
+      })
+     
+      const placeArrayRes = await axios.get('https://ajo-app.herokuapp.com/api/places/search/popular/') || [];
+      const placeArray = placeArrayRes?.data?.data?.map((place) => {
+        return{
+          route: '/explore/' + place.fullSearchResult.place_id
+        }
+      })
+
+      console.log(routeArray, placeArray);
+      const routes = routeArray.concat(placeArray)
+      return routes
+    },
   },
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
