@@ -6,8 +6,8 @@
       </div>
       <div class="text">
         <h1>Not Found</h1>
-        <p v-if="message">{{ message }}</p>
-        <p v-else>Check the spelling and try again</p>
+        <p>{{ message }}</p>
+        <p>Check the spelling and try again</p>
       </div>
       <nuxt-link to="/auth/login" class="btn">
         <TheButton title="Back to homepage" value="yellowBgLg" />
@@ -17,11 +17,9 @@
 </template>
 <script>
 export default {
-  props:{
-    message:{
-      type: String
-    }
-  }
+  props: {
+    message: String,
+  },
 }
 </script>
 <style lang="scss" scoped>

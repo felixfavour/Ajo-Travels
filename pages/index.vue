@@ -20,15 +20,21 @@
         <h1>AJO</h1>
       </div>
       <div class="text">
-        <h1>Welcome back, Folashade</h1>
+        <h1>
+          {{
+            this.$store.state.userDetails.firstname !== undefined
+              ? `Welcome back, ` + userName
+              : `Welcome to AJO`
+          }}
+        </h1>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Ajo is the No. 1 app for finding the best travel reviews and deals.
+          Read reviews, compare prices, and find the best Hotels, Restaurants,
+          Attractions and more.
         </p>
       </div>
-      <TheLoader />
-      <div class="button">
-        <a href="/auth/login">
+      <div class="button" @click="getRoute">
+        <a>
           <TheButton title=" Get Started" value="whiteBgLg" />
         </a>
       </div>
@@ -45,10 +51,33 @@ export default {
   name: 'IndexPage',
   transition: 'start',
   components: { TheButton, Footer, TheLoader, TheWhiteLoader },
+  data() {
+    return {
+      userName: this.$store.state.userDetails.firstname,
+    }
+  },
+  methods: {
+    getRoute() {
+      if (this.$store.state.userDetails.firstname !== undefined) {
+        this.$router.push('/home')
+      } else {
+        this.$router.push('/auth/login')
+      }
+    },
+  },
+  mounted() {
+    function isLoggedIn() {
+      if (this.$store.state.userDetails !== undefined) {
+        return 'true'
+      } else {
+        return 'false'
+      }
+    }
+  },
 }
 </script>
 <style lang="scss" scoped>
-@media screen and (min-width: 428px) {
+@media screen and (min-width: 429px) {
   .mobile {
     display: none;
   }
@@ -63,6 +92,9 @@ export default {
     width: 580.49px;
     height: 701.75px;
     top: 443px;
+    left: 0;
+    right: 0;
+    margin: auto;
     left: 430px;
   }
   .store {
@@ -71,9 +103,13 @@ export default {
     width: 535px;
     height: 84px;
     top: 1241px;
+    left: 0;
+    right: 0;
+    margin: auto;
     left: 464px;
   }
 }
+
 @media screen and (max-width: 428px) {
   .container {
     display: none;
