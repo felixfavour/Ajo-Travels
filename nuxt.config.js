@@ -1,4 +1,21 @@
+import { mapState } from 'vuex';
+import axios from "axios"
+
+
+
 export default {
+  //generate dynamic links
+  
+  generate:{
+    async routes() {
+          const routeArray = await axios.get('https://ajo-app.herokuapp.com/api/top-cities') || [];
+          return routeArray?.data?.data?.map((city) => {
+            console.log(city.city);
+            return '/' + city.city ;
+          })
+        },
+    // routes: dynamicRoutes
+  },
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
