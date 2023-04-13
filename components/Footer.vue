@@ -4,19 +4,25 @@
       <div class="logo" />
       <div class="info">
         <div class="click about">
-          <h2 class="header">About us</h2>
+          <h2 class="header">
+            About us
+          </h2>
           <p>Company</p>
           <p>Security</p>
           <p>Address</p>
         </div>
         <div class="click contact">
-          <h2 class="header">Contact us</h2>
+          <h2 class="header">
+            Contact us
+          </h2>
           <p>Email</p>
           <p>WhatsApp</p>
           <p>Slack</p>
         </div>
         <div class="click support">
-          <h2 class="header">Support</h2>
+          <h2 class="header">
+            Support
+          </h2>
           <p>Email</p>
         </div>
       </div>
@@ -29,7 +35,7 @@
 
 <script>
 export default {
-  name: 'FooterPage',
+  name: 'FooterPage'
 }
 </script>
 
@@ -82,5 +88,20 @@ export default {
   line-height: 36px;
   font-family: 'Cereal Light';
   font-weight: 300;
+}
+@media only screen and (max-width: 1100px){
+  .content{
+    column-gap: 130px !important;
+  }
+}
+@media only screen and (max-width: 690px){
+  .content{
+    column-gap: 50px !important;
+  }
+}
+@media only screen and (max-width: 610px){
+  .logo{
+    display: none;
+  }
 }
 </style>

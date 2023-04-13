@@ -1,114 +1,89 @@
 <template>
   <div class="container">
-    <div v-if="isLoggedInUser">
+    <div>
       <section class="top">
         <TheNavbar />
         <div class="welcome">
-          <p>Hi, {{ userName }}</p>
-          <h1>Where would you <br />like to go?</h1>
+          <p>Welcome</p>
+          <h1>Where would you <br>like to go?</h1>
         </div>
       </section>
       <section class="middle">
         <div class="search">
           <TheSearchBar />
         </div>
-        <div v-if="error">
-          <TheErrorCard />
-        </div>
-        <div class="scroll">
-          <div
-            class="scroll-text"
-            v-for="(popCity, index) in cities"
-            :key="popCity.id"
-          >
-            <TheScrollBar :popCity="popCity" :index="index" />
-            <div class="line"></div>
-          </div>
-        </div>
       </section>
       <section class="bottom">
         <div class="title">
           <h1>Popular</h1>
         </div>
-        <div class="pop-cards">
-          <div v-for="(place, index) in popularPlaces" :key="place.id">
-            <ThePopularCard :place="place" :index="index" :id="place.id" />
-          </div>
-        </div>
       </section>
-    </div>
-    <div v-else>
-      <TheLoginErrorCard />
     </div>
   </div>
 </template>
 <script>
-import { mapState, mapMutations, mapActions, mapGetters } from 'vuex'
-
 export default {
-  transition: 'home',
-  data() {
-    return {
-      error: '',
-      userName: this.$store.state.userDetails.firstname,
-    }
-  },
-  computed: {
-    ...mapState({
-      cities: (state) => state.cities,
-      popularPlaces: (state) => state.popularPlaces,
-    }),
-    isLoggedInUser() {
-      if (Object.keys(this.$store.state.userDetails).length !== 0) {
-        return true
-      } else {
-        return false
-      }
-    },
-  },
-  methods: {
-    ...mapActions(['getPopularPlaces', 'getTopCities']),
-  },
-  async fetch({ store }) {
-    await store.dispatch('getTopCities')
-    await store.dispatch('getPopularPlaces')
-  },
+  transition: 'home'
 }
 </script>
 <style lang="scss" scoped>
-@media screen and (max-width: 428px) {
-  .container {
-    width: 428px;
-    height: 926px;
-    font-family: 'Brown';
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    grid-template-areas:
-      'top'
-      'mid'
-      'bottom';
-    .top {
-      grid-area: top;
-      .welcome {
-        font-family: 'Brown';
-        margin-top: 34px;
-        margin-bottom: 16px;
-        padding: 0rem 2rem;
-        p {
-          font-size: 25px;
-          font-weight: 500;
-          color: #041a7a;
-        }
-        h1 {
-          font-size: 34px;
-          font-weight: 900;
-          color: #041a7a;
-        }
+.container {
+  max-height: 926px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    'top'
+    'mid'
+    'bottom';
+  .top {
+    grid-area: top;
+    .welcome {
+      margin-top: 34px;
+      margin-bottom: 16px;
+      padding: 0rem 2rem;
+      p {
+        font-size: 25px;
+        font-weight: 700;
+        color: #041a7a;
+      }
+      h1 {
+        font-size: 34px;
+        font-weight: 900;
+        color: #041a7a;
+        font-family: 'AirbnbCereal_W_Bd';
       }
     }
-    .middle {
-      grid-area: mid;
+  }
+  .middle {
+    grid-area: mid;
+    ::-webkit-scrollbar {
+      height: 0px;
+      width: 0px;
+      background: white;
+    }
+    ::-webkit-scrollbar-thumb:horizontal {
+      background: #fff;
+      border-radius: 10px;
+    }
+    .scroll {
+      padding-top: 35px;
+    }
+  }
+  .bottom {
+    grid-area: bottom;
+    margin: 0rem 0rem;
+    width: 100%;
+    .title {
+      padding: 0rem 1rem;
+      h1 {
+        margin-top: 27.34px;
+        font-weight: 500;
+      }
+    }
+    .container {
+      width: 100%;
+      margin-bottom: 67px;
       ::-webkit-scrollbar {
         height: 0px;
         width: 0px;
@@ -118,35 +93,11 @@ export default {
         background: #fff;
         border-radius: 10px;
       }
-      .scroll {
-        position: relative;
-        display: flex;
-        flex-direction: row;
-        overflow: scroll;
-        max-width: 428px;
-        padding-top: 65px;
-        .line {
-          margin-top: 10px;
-          height: 2px;
-          background: #fffee6;
-          max-width: 428px;
-        }
-      }
-    }
-    .bottom {
-      grid-area: bottom;
-      margin: 0rem 0rem;
-      .title {
-        padding: 0rem 1rem;
-        h1 {
-          margin-top: 32px;
-        }
-      }
       .pop-cards {
         display: flex;
         flex-direction: row;
-        width: 423px;
-        overflow: scroll;
+        overflow: hidden;
+        overflow-x: scroll;
         gap: 20px;
       }
     }

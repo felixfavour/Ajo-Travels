@@ -1,25 +1,25 @@
 <template>
-    <div class="btn-control-containers">
-        <button class="btn-control prev" @click="previousSlideHandler">
-            <font-awesome-icon icon="angle-left" />
-        </button>
-        <button class="btn-control next" @click="nextSlideHandler">
-            <font-awesome-icon icon="angle-right" />
-        </button>
-    </div>
+  <div class="btn-control-containers">
+    <button class="btn-control prev" @click="previousSlideHandler">
+      <font-awesome-icon icon="angle-left" />
+    </button>
+    <button class="btn-control next" @click="nextSlideHandler">
+      <font-awesome-icon icon="angle-right" />
+    </button>
+  </div>
 </template>
 
 <script>
 export default {
-    name: "carousel-controls",
-    methods:{
-        previousSlideHandler(){
-            this.$emit('previous-slide')
-        },
-        nextSlideHandler(){
-            this.$emit('next-slide')
-        }
+  name: 'CarouselControls',
+  methods: {
+    previousSlideHandler () {
+      this.$emit('previous-slide')
+    },
+    nextSlideHandler () {
+      this.$emit('next-slide')
     }
+  }
 }
 </script>
 

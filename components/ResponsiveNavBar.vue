@@ -5,27 +5,19 @@
         <div class="white-logo" />
         <img src="~assets/images/vertical-line.svg" alt="">
       </div>
-      <div class="nav-links">
-        <NuxtLink to="/">
-          Home
-        </NuxtLink>
-        <a href="/mobile">Mobile</a>
-        <a>Contact</a>
-      </div>
-      <div class="btns">
-        <nuxt-link to="/auth/register">
-          <button class="sign-up">
-            Signup
-          </button>
-        </nuxt-link>
-        <nuxt-link to="/auth/login">
-          <button class="login">
-            Login
-          </button>
-        </nuxt-link>
+      <div :class="[isClicked ? 'reveal': '', 'hamburger']" @click="toggleHamburger()">
+        <span class="bar" />
+        <span class="bar" />
+        <span class="bar" />
       </div>
     </div>
-    <div class="guide">
+    <div class="rhs">
+      <ResponsiveDropDown
+        v-show="showMenu"
+        @closeMenu="[showMenu = false, isClicked= false] "
+      />
+    </div>
+    <div v-if="!isClicked" class="guide">
       <h1 class="name">
         Ajo
       </h1>
@@ -42,7 +34,19 @@
 
 <script>
 export default {
-  name: 'NavbarPage'
+  name: 'NavbarPage',
+  data () {
+    return {
+      isClicked: false,
+      showMenu: false
+    }
+  },
+  methods: {
+    toggleHamburger () {
+      this.isClicked = !this.isClicked
+      this.showMenu = !this.showMenu
+    }
+  }
 }
 </script>
 
@@ -55,9 +59,35 @@ export default {
 .nav-bar {
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding-top: 30px;
+  justify-content: space-between;
+  padding: 30px 15px 0 15px;
 }
+.hamburger{
+  cursor: pointer;
+  border-radius: 50%;
+  border: 1px solid #000;
+  padding: 10px;
+}
+.bar{
+      display: block;
+      width: 25px;
+      height: 3px;
+      margin: 5px auto;
+      -webkit-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
+      background-color: black;
+      border-radius: 4px;
+    }
+.hamburger.reveal .bar:nth-child(2) {
+        opacity: 0;
+        visibility: hidden;
+    }
+    .hamburger.reveal .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.reveal .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
 .logo {
   display: flex;
   column-gap: 43px;

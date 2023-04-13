@@ -2,11 +2,9 @@
   <div>
     <div v-show="showDropdown" class="drop-container" style="display: block">
       <div class="drop-header">
-        <div class="title">
-          <nuxt-link to="/home">
-            <font-awesome-icon icon="dove" />
-            <h1>AJO</h1></nuxt-link
-          >
+        <div class="title" @click="showDropdown = !showDropdown">
+          <font-awesome-icon icon="dove" />
+          <h1>AJO</h1>
         </div>
         <div>
           <font-awesome-icon
@@ -16,16 +14,24 @@
         </div>
       </div>
       <div class="drop-items">
-        <nuxt-link to="/">Wishlists</nuxt-link>
-        <nuxt-link to="/">Past Trips</nuxt-link>
-        <nuxt-link to="/home">Home</nuxt-link>
-        <div class="logout" @click="logout">Log out</div>
+        <nuxt-link to="#">
+          Wishlists
+        </nuxt-link>
+        <nuxt-link to="#">
+          Past Trips
+        </nuxt-link>
+        <nuxt-link to="/home">
+          Home
+        </nuxt-link>
+        <div class="logout" @click="logout">
+          Log out
+        </div>
       </div>
     </div>
     <div class="nav">
       <font-awesome-icon icon="bars" @click="showDropdown = !showDropdown" />
       <div>
-        <nuxt-link to="/">
+        <nuxt-link to="/mobile">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -47,25 +53,24 @@
 </template>
 <script>
 export default {
-  data() {
+  data () {
     return {
-      showDropdown: false,
+      showDropdown: false
     }
   },
   methods: {
-    toggleDropdown() {
-      console.log('tada')
-      this.showDropdown == !this.showDropdown
+    toggleDropdown () {
+      // eslint-disable-next-line no-unused-expressions
+      this.showDropdown === !this.showDropdown
     },
-    closeDropDown() {
-      this.showDropdown == !this.showDropdown
+    closeDropDown () {
+      // eslint-disable-next-line no-unused-expressions
+      this.showDropdown === !this.showDropdown
     },
-    logout() {
-      this.$store.commit('setUserDetails', {})
-      this.$router.push('/')
-      console.log('User Logged Out')
-    },
-  },
+    logout () {
+      this.$router.push('/mobile')
+    }
+  }
 }
 </script>
 <style lang="scss">
@@ -96,8 +101,8 @@ export default {
 .drop-container {
   position: absolute;
   top: 0;
+  width: 100%;
   background-color: #fff;
-  width: 432px;
   z-index: 2;
   padding-bottom: 2rem;
   .drop-header {
@@ -108,17 +113,18 @@ export default {
     margin-top: 34px;
     padding: 0rem 1rem;
     .title {
-      a {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 10px;
-        text-decoration: none;
-        h1 {
-          font-family: 'AirbnbCereal_W_Md';
-          color: #041a7a;
-        }
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+
+      h1 {
+        font-family: 'AirbnbCereal_W_Md';
+        color: #041a7a;
+        cursor: pointer;
       }
+
       svg {
         color: #9a9400;
         cursor: pointer;

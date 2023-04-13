@@ -1,26 +1,26 @@
 <template>
-    <div class="carousel-indicator-container">
-        <div class="indicator-dots">
-            <div class="dots" v-for="(photo, key) in  photos" :key="key" :class="{ active : currentIndex === key }">
-                <p></p>
-            </div>
-        </div>
+  <div class="carousel-indicator-container">
+    <div class="indicator-dots">
+      <div v-for="(photo, key) in photosArray" :key="key" class="dots" :class="{ active : currentIndex === key }">
+        <p />
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
 export default {
-    name: "carousel-indicators",
-    props:{
-        photos:{
-            Required: true,
-            type: Array
-        },
-        currentIndex: {
-            Required: true,
-            type: Number
-        },
+  name: 'CarouselIndicators',
+  props: {
+    photosArray: {
+      Required: true,
+      type: Array
+    },
+    currentIndex: {
+      Required: true,
+      type: Number
     }
+  }
 }
 </script>
 

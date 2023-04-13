@@ -2,7 +2,7 @@
   <div>
     <main>
       <div class="img-container">
-        <img src="../assets/img/error.png" alt="" />
+        <img src="~/assets/images/error.png" alt="" />
       </div>
       <div class="text">
         <h1>Oops! <br />Something went wrong.</h1>

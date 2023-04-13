@@ -3,30 +3,32 @@
     <div class="modal">
       <div class="modal-top">
         <div class="close-panel">
-          <div></div>
+          <div />
         </div>
         <div class="rides-panel">
           <div
             class="bolt"
-            @click="activateBoltHandler"
             :class="{ active: activateBolt }"
+            @click="activateBoltHandler"
           >
-            <img src="../assets/img/boltCar.svg" alt="bolt" />
+            <img src="~/assets/images/boltCar.svg" alt="bolt">
             <p>Bolt</p>
           </div>
           <div
             class="uber"
-            @click="activateUberHandler"
             :class="{ active: activateUber }"
+            @click="activateUberHandler"
           >
-            <img src="../assets/img/uberCar.svg" alt="uber" />
+            <img src="~/assets/images/uberCar.svg" alt="uber">
             <p>Uber</p>
           </div>
         </div>
       </div>
       <div class="modal-bottom">
         <button>Go to app</button>
-        <button @click="closeModal">Close</button>
+        <button @click="closeModal">
+          Close
+        </button>
       </div>
     </div>
   </div>
@@ -34,52 +36,51 @@
 
 <script>
 export default {
-    name: "rideModal",
-    data(){
-        return{
-            activateBolt: true,
-            activateUber: false,
-        }
-    },
-    methods:{
-        closeModal(){
-            this.$emit('close-modal');
-            console.log("I'm being dragged");
-        },
-        initiateDrag(e){
-            let dragged = e.target;
-            for(let i = dragged.style.height; i > 0; i--){
-                console.log("This is my height" + i);
-            }
-            // dragged.style.height = 100 + "px";
-        },
-        activateBoltHandler(){
-            this.activateBolt = true
-            this.activateUber = false
-        },
-        activateUberHandler(){
-            this.activateUber = true
-            this.activateBolt = false
-        }
-    },
+  name: 'RideModal',
+  data () {
+    return {
+      activateBolt: true,
+      activateUber: false
+    }
+  },
   methods: {
-    closeModal() {
+    closeModal () {
       this.$emit('close-modal')
+      console.log("I'm being dragged")
     },
-    activateBoltHandler() {
+    initiateDrag (e) {
+      const dragged = e.target
+      for (let i = dragged.style.height; i > 0; i--) {
+        console.log('This is my height' + i)
+      }
+      // dragged.style.height = 100 + "px";
+    },
+    activateBoltHandler () {
       this.activateBolt = true
       this.activateUber = false
     },
-    activateUberHandler() {
+    activateUberHandler () {
       this.activateUber = true
       this.activateBolt = false
-    },
+    }
   },
+  methods: {
+    closeModal () {
+      this.$emit('close-modal')
+    },
+    activateBoltHandler () {
+      this.activateBolt = true
+      this.activateUber = false
+    },
+    activateUberHandler () {
+      this.activateUber = true
+      this.activateBolt = false
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-@media screen and (min-width: 428px) {
   .modal-container {
     z-index: 9;
     width: 100vw;
@@ -136,7 +137,6 @@ export default {
       }
     }
   }
-}
 @media (min-width: 1200px) {
   .modal-container {
     align-items: center;

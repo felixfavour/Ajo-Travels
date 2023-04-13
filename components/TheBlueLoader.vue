@@ -37,7 +37,7 @@ export default {
   margin: auto;
   height: 32px;
   width: 32px;
-  border: 3px solid #fcf300;
+  border: 3px solid #041a7a;
   border-bottom: 3px solid transparent;
   border-radius: 50%;
   -webkit-animation: loader-1 1.5s cubic-bezier(0.77, 0, 0.175, 1) infinite;
@@ -84,7 +84,7 @@ export default {
   margin: auto;
   width: 6px;
   height: 6px;
-  background: #fcf300;
+  background: #041a7a;
   border-radius: 50%;
   -webkit-animation: loader-2 1.5s cubic-bezier(0.77, 0, 0.175, 1) infinite;
   animation: loader-2 1.5s cubic-bezier(0.77, 0, 0.175, 1) infinite;

@@ -4,11 +4,12 @@
   </div>
 </template>
 <script>
-export default {};
+export default {}
 </script>
 <style lang="scss">
 body {
   margin: 0px;
+  scrollbar-width: none;
 }
 ::-webkit-scrollbar {
   width: 0px;
