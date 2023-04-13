@@ -5,7 +5,6 @@
   "engines": {
     "node": "16.x"
   },
-
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
@@ -19,7 +18,6 @@
     "@fortawesome/free-brands-svg-icons": "^6.1.1",
     "@fortawesome/free-regular-svg-icons": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
-    "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/vercel-builder": "^0.24.0",
     "core-js": "^3.19.3",

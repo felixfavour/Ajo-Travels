@@ -1,5 +1,4 @@
 import VuexPersistence from 'vuex-persist'
-import axios from 'axios'
 
 function getPlugins () {
   const plugins = []

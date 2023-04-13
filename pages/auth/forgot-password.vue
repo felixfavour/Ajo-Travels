@@ -10,13 +10,13 @@
       <div class="form">
         <form
           v-if="!loading"
-          @submit="login()"
           enctype="multipart/form-data"
           method="post"
+          @submit="login()"
         >
           <div class="fields">
             <label for="email"><strong>Email Address</strong></label>
-            <input type="email" name="email" v-model="email" />
+            <input v-model="email" type="email" name="email">
           </div>
           <div>
             <div class="btn">
@@ -34,50 +34,47 @@
   </main>
 </template>
 <script>
-import axios from 'axios'
 export default {
-  data() {
+  data () {
     return {
       email: '',
-      loading: false,
+      loading: false
     }
   },
   methods: {
-    async forgotPassword() {
+    forgotPassword () {
+      // eslint-disable-next-line no-unused-vars
       const data = {
-        email: this.email,
+        email: this.email
       }
       this.loading = true
-      if (this.email == '') {
+      if (this.email === '') {
         this.loading = false
         this.$toasted.show('email cannot be empty', {
           position: 'top-center',
           duration: 2500,
-          type: 'danger',
+          type: 'danger'
         })
         return
       }
-      axios
-        .post('https://ajo-app.herokuapp.com/api/auth/forgot_password', data)
-        .then((res) => {
-          this.$toasted.show(res.data.message, {
-            position: 'top-right',
-            duration: 500,
-            type: 'success',
-          })
-          this.loading = false
-          this.$router.push('/home')
+
+      // Mock API response
+      const mockResponse = {
+        data: { message: 'Password reset link sent to email.' }
+      }
+
+      // Simulate a delay to make it seem like the API call is being made
+      setTimeout(() => {
+        this.$toasted.show(mockResponse.data.message, {
+          position: 'top-right',
+          duration: 500,
+          type: 'success'
         })
-        .catch((err) => {
-          this.$toasted.show('Please enter the right details and try again', {
-            position: 'top-left',
-            duration: 2000,
-            type: 'danger',
-          })
-          this.loading = false
-        })
-    },
-  },
+        this.loading = false
+        this.$router.push('/home')
+      }, 1000)
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
